@@ -20,6 +20,14 @@ _CIUDADES_EXTRANJERAS = set(CIUDADES[6:])
 
 
 @dataclass
+class Caracteristicas:
+    agregados: pd.DataFrame
+    seq_cat: np.ndarray
+    seq_num: np.ndarray
+    mascara: np.ndarray
+
+
+@dataclass
 class Dataset:
     meta: pd.DataFrame
     agregados: pd.DataFrame
@@ -43,9 +51,28 @@ def _lejania(ciudad: str, ciudad_base: str) -> float:
     return 2.0 if ciudad in _CIUDADES_EXTRANJERAS else 1.0
 
 
-def construir_dataset(df: pd.DataFrame, config: ConfigGenerador) -> Dataset:
-    """Una fila por transaccion. La ventana mira hacia atras y no pasa de K."""
-    df = df.sort_values(["id_tarjeta", "marca_tiempo"]).reset_index(drop=True)
+def construir_caracteristicas(df: pd.DataFrame) -> Caracteristicas:
+    """Preparacion compartida por entrenamiento e inferencia, sin etiquetas.
+
+    Cada ancla usa como ciudad base la moda de sus 19 transacciones previas.
+    Los empates se resuelven alfabeticamente; sin historia usa la ciudad actual.
+    Toda la ventana se expresa respecto a esa base. No requiere historia adicional.
+    """
+    requeridas = {"id_tarjeta", "marca_tiempo", "monto", "rubro", "canal", "ciudad"}
+    faltantes = requeridas - set(df.columns)
+    if faltantes:
+        raise ValueError(f"Faltan columnas: {sorted(faltantes)}")
+    if df.empty or df[list(requeridas)].isna().any().any():
+        raise ValueError("Se requieren transacciones completas y no vacias")
+    for columna in ["marca_tiempo", "monto"]:
+        if not pd.api.types.is_numeric_dtype(df[columna]) or not np.isfinite(df[columna]).all():
+            raise ValueError(f"{columna} debe contener numeros finitos")
+    if (df["monto"] <= 0).any():
+        raise ValueError("monto debe ser mayor que cero")
+    for columna in ["rubro", "canal", "ciudad"]:
+        if not df[columna].map(lambda v: isinstance(v, str) and bool(v.strip())).all():
+            raise ValueError(f"{columna} debe contener textos no vacios")
+    df = df.sort_values(["id_tarjeta", "marca_tiempo"], kind="stable").reset_index(drop=True)
     n = len(df)
 
     cod_rubro = {v: i + 1 for i, v in enumerate(RUBROS)}     # 0 reservado a relleno/OOV
@@ -64,14 +91,11 @@ def construir_dataset(df: pd.DataFrame, config: ConfigGenerador) -> Dataset:
         rubros = bloque["rubro"].to_numpy()
         canales = bloque["canal"].to_numpy()
         ciudades = bloque["ciudad"].to_numpy()
-        # ciudad base = la mas frecuente en la historia de la tarjeta
-        ciudad_base = pd.Series(ciudades).mode().iloc[0]
 
         # precalculados para no repetir la busqueda en cada ventana
-        c_rubro = np.array([cod_rubro[r] for r in rubros], dtype=np.int64)
-        c_canal = np.array([cod_canal[c] for c in canales], dtype=np.int64)
-        c_ciudad = np.array([cod_ciudad[c] for c in ciudades], dtype=np.int64)
-        lejania = np.array([_lejania(c, ciudad_base) for c in ciudades], dtype=np.float64)
+        c_rubro = np.array([cod_rubro.get(r, 0) for r in rubros], dtype=np.int64)
+        c_canal = np.array([cod_canal.get(c, 0) for c in canales], dtype=np.int64)
+        c_ciudad = np.array([cod_ciudad.get(c, 0) for c in ciudades], dtype=np.int64)
         log_monto = np.log1p(montos)
         hora = (tiempos % 1.0) * 24.0
         dia = np.floor(tiempos) % 7
@@ -84,6 +108,8 @@ def construir_dataset(df: pd.DataFrame, config: ConfigGenerador) -> Dataset:
             hist = slice(desde, j)             # solo las previas, sin el ancla
             vent = slice(desde, j + 1)         # previas + ancla, para la secuencia
             fila = idx[j]
+            ciudad_base = (pd.Series(ciudades[hist]).mode().iloc[0]
+                           if j > desde else ciudades[j])
 
             # --- secuencia (alineada a la derecha; el ancla queda en K-1) ---
             largo = j + 1 - desde
@@ -100,7 +126,7 @@ def construir_dataset(df: pd.DataFrame, config: ConfigGenerador) -> Dataset:
             seq_num[fila, pos, 3] = cos_h[vent]
             seq_num[fila, pos, 4] = sin_d[vent]
             seq_num[fila, pos, 5] = cos_d[vent]
-            seq_num[fila, pos, 6] = lejania[vent]
+            seq_num[fila, pos, 6] = [_lejania(c, ciudad_base) for c in ciudades[vent]]
             mascara[fila, pos] = True
 
             # agregados sobre las mismas 19 previas, ni una mas
@@ -126,14 +152,52 @@ def construir_dataset(df: pd.DataFrame, config: ConfigGenerador) -> Dataset:
                 float(np.mean(np.diff(t_hist))) if len(t_hist) > 1 else 0.0,
             ]
 
-    meta = df[["id_tx", "id_tarjeta", "marca_tiempo", "es_fraude",
-               "mecanismo", "id_episodio"]].copy()
-    meta["particion"] = asignar_particion(meta["marca_tiempo"].to_numpy(), config)
-    return Dataset(
-        meta=meta.reset_index(drop=True),
+    return Caracteristicas(
         agregados=pd.DataFrame(agregados, columns=COLUMNAS_AGREGADAS),
         seq_cat=seq_cat, seq_num=seq_num, mascara=mascara,
     )
+
+
+def construir_dataset(df: pd.DataFrame, config: ConfigGenerador) -> Dataset:
+    """Agrega etiquetas y particion experimental a las caracteristicas compartidas."""
+    df = df.sort_values(["id_tarjeta", "marca_tiempo"], kind="stable").reset_index(drop=True)
+    rasgos = construir_caracteristicas(df)
+    meta = df[["id_tx", "id_tarjeta", "marca_tiempo", "es_fraude",
+               "mecanismo", "id_episodio"]].copy()
+    meta["particion"] = asignar_particion(meta["marca_tiempo"].to_numpy(), config)
+    return Dataset(meta=meta, agregados=rasgos.agregados, seq_cat=rasgos.seq_cat,
+                   seq_num=rasgos.seq_num, mascara=rasgos.mascara)
+
+
+def preparar_inferencia(transacciones, escaladores) -> dict:
+    """Prepara una tarjeta; devuelve solo su ultima ventana, sin etiquetas.
+
+    Entrada: de 1 a 20 eventos con marca_tiempo (dias desde el origen fijo),
+    monto, rubro, canal y ciudad. El orden recibido debe ser cronologico.
+    escaladores es la seccion 'secuencia' del JSON guardado en entrenamiento.
+    La salida son arrays numpy con dimension de lote 1.
+    """
+    df = pd.DataFrame(transacciones).copy()
+    if not 1 <= len(df) <= K:
+        raise ValueError(f"Se requieren entre 1 y {K} transacciones")
+    if "id_tarjeta" in df and df["id_tarjeta"].nunique(dropna=False) != 1:
+        raise ValueError("La ventana debe pertenecer a una sola tarjeta")
+    df["id_tarjeta"] = 0
+    rasgos = construir_caracteristicas(df)
+    if not df["marca_tiempo"].is_monotonic_increasing:
+        raise ValueError("Las transacciones deben estar en orden cronologico")
+    medias = np.asarray(escaladores["medias"], dtype=float)
+    desv = np.asarray(escaladores["desviaciones"], dtype=float)
+    if (medias.shape != (7,) or desv.shape != (7,) or
+            not np.isfinite(medias).all() or not np.isfinite(desv).all() or
+            (desv <= 0).any()):
+        raise ValueError("Escaladores de secuencia invalidos")
+    return {
+        "cat": rasgos.seq_cat[-1:].copy(),
+        "num": aplicar_escaladores(rasgos.seq_num[-1:], rasgos.mascara[-1:],
+                                  {"medias": medias, "desviaciones": desv}),
+        "mascara": rasgos.mascara[-1:].copy(),
+    }
 
 
 def ajustar_escaladores(seq_num, mascara, indices_entrenamiento) -> dict:
