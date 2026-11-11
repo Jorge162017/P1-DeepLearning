@@ -48,13 +48,13 @@ sistema bancario validado. No hace falta entrenar una arquitectura nueva.
 
 ### 3. API y contrato
 
-- [ ] Implementar carga única del modelo y escaladores al iniciar el servicio,
+- [x] Implementar carga única del modelo y escaladores al iniciar el servicio,
   evaluación con `eval()` y sin gradientes, y versiones compatibles.
-- [ ] Crear `POST /predict` y `GET /health`. Validar entrada y devolver errores
+- [x] Crear `POST /predict` y `GET /health`. Validar entrada y devolver errores
   claros, puntaje, versión del modelo y, si se expone, umbral y decisión sugerida.
-- [ ] Incorporar pruebas de predicción real con artefactos corregidos,
+- [x] Incorporar pruebas de predicción real con artefactos corregidos,
   datos inválidos, categorías nuevas y secuencias cortas.
-- [ ] Fijar dependencias reproducibles y documentar ejecución y ejemplo de uso.
+- [x] Fijar dependencias reproducibles y documentar ejecución y ejemplo de uso.
 
 Contrato inicial para coordinar la interfaz: JSON con `transacciones`, una lista
 cronológica de 1 a 20 eventos de una sola tarjeta, cada uno con `marca_tiempo`

@@ -1,0 +1,12 @@
+INFO:     Started server process [31284]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8765 (Press CTRL+C to quit)
+INFO:     {"evento": "solicitud_http", "id_solicitud": "3a8eac9cc29647a3956e3f05a2303f32", "fecha_utc": "2026-11-11T15:28:56.394975+00:00", "metodo": "GET", "ruta": "/health", "estado_http": 200, "duracion_ms": 1.645, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     127.0.0.1:58790 - "GET /health HTTP/1.1" 200 OK
+INFO:     {"evento": "solicitud_http", "id_solicitud": "a733f3026dd940c49d096ee21d486bf1", "fecha_utc": "2026-11-11T15:28:56.423288+00:00", "metodo": "POST", "ruta": "/predict", "estado_http": 200, "duracion_ms": 27.169, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     127.0.0.1:58791 - "POST /predict HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [31284]

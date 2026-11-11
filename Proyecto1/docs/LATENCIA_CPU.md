@@ -55,4 +55,5 @@ La suite completa pasó **111 pruebas en 42.64 segundos**; registro en
 `docs/registro_pruebas_cargador.log`. Incluye la paridad de los seis casos,
 integridad, incompatibilidades, errores de entrada y reutilización de pesos.
 
-Siguiente paso: integrar el cargador con la API y medir el servicio desplegado.
+La integración local con la API ya está implementada; ver [API.md](API.md).
+Falta medir el servicio desplegado.

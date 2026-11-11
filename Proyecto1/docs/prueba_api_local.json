@@ -1,0 +1,13 @@
+{
+  "health": {
+    "estado": "ok",
+    "dispositivo": "cpu",
+    "version_modelo": "B-causal_v2-259f9467e2d3"
+  },
+  "predict": {
+    "puntaje_riesgo": 0.041290659457445145,
+    "version_modelo": "B-causal_v2-259f9467e2d3"
+  },
+  "id_solicitud": "a733f3026dd940c49d096ee21d486bf1",
+  "tipo_prueba": "HTTP real local con Uvicorn"
+}

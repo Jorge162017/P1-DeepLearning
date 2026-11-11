@@ -301,5 +301,17 @@ OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4 python -m src.medir_latencia --hilos 4
 ```
 
 Ver [guía del cargador](docs/SIGUIENTE_PASO_CPU.md) y
-[mediciones de latencia](docs/LATENCIA_CPU.md). La API HTTP se implementará
-a continuación; el uso por consola ya permite verificar la inferencia local.
+[mediciones de latencia](docs/LATENCIA_CPU.md). La API HTTP local se documenta en [docs/API.md](docs/API.md);
+el uso por consola sigue disponible para verificar la inferencia.
+
+### API HTTP local
+
+```bash
+python -m pip install -r requirements-api.txt
+python -m uvicorn src.api:app --host 127.0.0.1 --port 8000
+```
+
+Ofrece `POST /predict`, `GET /health` y documentación en `/docs`.
+La API carga B una sola vez por proceso, valida el contrato y registra
+identificadores, estado y duración sin guardar las transacciones.
+Ver [contrato y ejecución](docs/API.md). Todavía falta el despliegue público.

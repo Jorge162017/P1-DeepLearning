@@ -74,9 +74,9 @@ concurrencia ni el hosting definitivo.
 
 ## Qué sigue
 
-Integrar una instancia del cargador con `POST /predict` y `GET /health`,
-definir el manejo de errores HTTP y los registros de uso. Al desplegar, repetir
-la medición en el servidor y agregar pruebas del contrato de la API.
+La integración local con `POST /predict`, `GET /health`, errores HTTP y
+registros está implementada; ver [API.md](API.md). Falta desplegar el servicio
+y repetir las mediciones en el servidor.
 
 ## Contrato de entrada fijado para continuar
 
@@ -109,4 +109,4 @@ python -c 'from pathlib import Path; from src.reentrenar import verificar_bundle
 ```
 
 Esta comprobación original sigue disponible. La interfaz reutilizable y la
-medición local ya están implementadas; la integración con la API es el siguiente paso.
+medición local y la integración con la API ya están implementadas.
