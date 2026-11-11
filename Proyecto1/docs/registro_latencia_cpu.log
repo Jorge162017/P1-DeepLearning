@@ -1,0 +1,76 @@
+{
+  "fecha_utc": "2026-11-11T15:18:32.059128+00:00",
+  "version_modelo": "B-causal_v2-259f9467e2d3",
+  "entorno": {
+    "plataforma": "macOS-26.2-arm64-arm-64bit-Mach-O",
+    "python": "3.13.12",
+    "torch": "2.13.0",
+    "dispositivo": "cpu",
+    "hilos_torch": 4
+  },
+  "metodo": {
+    "repeticiones_por_longitud": 300,
+    "calentamiento_por_longitud": 30,
+    "repeticiones_carga": 10,
+    "incluye_importaciones": false,
+    "incluye_red_http": false,
+    "concurrencia": 1,
+    "nota_carga": "Primera carga en este proceso; cache de disco no vaciada. Cada carga incluye hashes de los tres archivos requeridos."
+  },
+  "carga_primera_ms": 4.852042,
+  "cargas_repetidas": {
+    "n": 10,
+    "mediana_ms": 1.2379164999999999,
+    "p95_ms": 1.3025895499999998,
+    "min_ms": 1.2165,
+    "max_ms": 1.333208
+  },
+  "por_numero_transacciones": {
+    "1": {
+      "preparacion": {
+        "n": 300,
+        "mediana_ms": 0.8715835000000001,
+        "p95_ms": 0.91806185,
+        "min_ms": 0.847083,
+        "max_ms": 1.179458
+      },
+      "inferencia": {
+        "n": 300,
+        "mediana_ms": 0.21991650000000001,
+        "p95_ms": 0.23267645,
+        "min_ms": 0.213833,
+        "max_ms": 0.268542
+      },
+      "predecir_total": {
+        "n": 300,
+        "mediana_ms": 1.0936255,
+        "p95_ms": 1.13840415,
+        "min_ms": 1.067916,
+        "max_ms": 1.30025
+      }
+    },
+    "20": {
+      "preparacion": {
+        "n": 300,
+        "mediana_ms": 1.6390625,
+        "p95_ms": 1.73816105,
+        "min_ms": 1.622417,
+        "max_ms": 1.991125
+      },
+      "inferencia": {
+        "n": 300,
+        "mediana_ms": 0.224625,
+        "p95_ms": 0.24224340000000003,
+        "min_ms": 0.220542,
+        "max_ms": 0.266167
+      },
+      "predecir_total": {
+        "n": 300,
+        "mediana_ms": 1.864917,
+        "p95_ms": 1.9743056,
+        "min_ms": 1.843208,
+        "max_ms": 2.274958
+      }
+    }
+  }
+}

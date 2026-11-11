@@ -1,0 +1,144 @@
+{
+  "transacciones": [
+    {
+      "marca_tiempo": 90.48412766167473,
+      "monto": 41.98,
+      "rubro": "entretenimiento",
+      "canal": "chip",
+      "ciudad": "guatemala"
+    },
+    {
+      "marca_tiempo": 91.57922017245336,
+      "monto": 38.84,
+      "rubro": "farmacia",
+      "canal": "chip",
+      "ciudad": "guatemala"
+    },
+    {
+      "marca_tiempo": 94.60055626949753,
+      "monto": 47.26,
+      "rubro": "electronica",
+      "canal": "chip",
+      "ciudad": "guatemala"
+    },
+    {
+      "marca_tiempo": 97.4687023715588,
+      "monto": 27.26,
+      "rubro": "entretenimiento",
+      "canal": "chip",
+      "ciudad": "guatemala"
+    },
+    {
+      "marca_tiempo": 98.31886898104428,
+      "monto": 62.92,
+      "rubro": "viajes",
+      "canal": "contactless",
+      "ciudad": "guatemala"
+    },
+    {
+      "marca_tiempo": 107.63727644824806,
+      "monto": 76.86,
+      "rubro": "farmacia",
+      "canal": "chip",
+      "ciudad": "guatemala"
+    },
+    {
+      "marca_tiempo": 109.26758545543669,
+      "monto": 161.76,
+      "rubro": "supermercado",
+      "canal": "chip",
+      "ciudad": "guatemala"
+    },
+    {
+      "marca_tiempo": 110.41819207729176,
+      "monto": 93.63,
+      "rubro": "combustible",
+      "canal": "chip",
+      "ciudad": "guatemala"
+    },
+    {
+      "marca_tiempo": 111.34961338204879,
+      "monto": 403.71,
+      "rubro": "entretenimiento",
+      "canal": "chip",
+      "ciudad": "guatemala"
+    },
+    {
+      "marca_tiempo": 118.26869643173072,
+      "monto": 43.32,
+      "rubro": "electronica",
+      "canal": "chip",
+      "ciudad": "guatemala"
+    },
+    {
+      "marca_tiempo": 120.3342954078289,
+      "monto": 78.19,
+      "rubro": "servicios",
+      "canal": "chip",
+      "ciudad": "guatemala"
+    },
+    {
+      "marca_tiempo": 121.31051885745315,
+      "monto": 152.39,
+      "rubro": "entretenimiento",
+      "canal": "chip",
+      "ciudad": "guatemala"
+    },
+    {
+      "marca_tiempo": 122.5764449863312,
+      "monto": 59.2,
+      "rubro": "viajes",
+      "canal": "ecommerce",
+      "ciudad": "guatemala"
+    },
+    {
+      "marca_tiempo": 125.52073519191292,
+      "monto": 16.65,
+      "rubro": "farmacia",
+      "canal": "contactless",
+      "ciudad": "guatemala"
+    },
+    {
+      "marca_tiempo": 130.53649864681736,
+      "monto": 49.9,
+      "rubro": "farmacia",
+      "canal": "contactless",
+      "ciudad": "guatemala"
+    },
+    {
+      "marca_tiempo": 130.5637505923227,
+      "monto": 39.07,
+      "rubro": "viajes",
+      "canal": "contactless",
+      "ciudad": "guatemala"
+    },
+    {
+      "marca_tiempo": 132.63131454078402,
+      "monto": 89.36,
+      "rubro": "electronica",
+      "canal": "ecommerce",
+      "ciudad": "guatemala"
+    },
+    {
+      "marca_tiempo": 136.3538551006398,
+      "monto": 65.25,
+      "rubro": "ropa",
+      "canal": "ecommerce",
+      "ciudad": "guatemala"
+    },
+    {
+      "marca_tiempo": 136.4497295404003,
+      "monto": 174.51,
+      "rubro": "entretenimiento",
+      "canal": "chip",
+      "ciudad": "guatemala"
+    },
+    {
+      "marca_tiempo": 140.583732150038,
+      "monto": 21.4,
+      "rubro": "supermercado",
+      "canal": "ecommerce",
+      "ciudad": "guatemala"
+    }
+  ]
+}
