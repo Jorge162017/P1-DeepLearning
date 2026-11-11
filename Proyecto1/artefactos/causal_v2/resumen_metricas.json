@@ -1,0 +1,343 @@
+{
+  "auc_pr": {
+    "A": {
+      "validacion": 0.8091834757356582,
+      "prueba": 0.5493688328114291
+    },
+    "B": {
+      "validacion": 0.874441653876915,
+      "prueba": 0.6085194619879223
+    },
+    "C": {
+      "validacion": 0.863146712260618,
+      "prueba": 0.6088344005358466
+    }
+  },
+  "umbrales": {
+    "A": 0.6683417085427136,
+    "B": 0.7336683417085427,
+    "C": 0.8040201005025126
+  },
+  "metricas_prueba": {
+    "A": {
+      "precision": 0.3412633305988515,
+      "exhaustividad": 0.6709677419354839,
+      "f1": 0.45241979336595983,
+      "vp": 416,
+      "fp": 803,
+      "vn": 74036,
+      "fn": 204
+    },
+    "B": {
+      "precision": 0.5291878172588832,
+      "exhaustividad": 0.6725806451612903,
+      "f1": 0.5923295454545454,
+      "vp": 417,
+      "fp": 371,
+      "vn": 74468,
+      "fn": 203
+    },
+    "C": {
+      "precision": 0.4830316742081448,
+      "exhaustividad": 0.6887096774193548,
+      "f1": 0.5678191489361701,
+      "vp": 427,
+      "fp": 457,
+      "vn": 74382,
+      "fn": 193
+    }
+  },
+  "permutacion": {
+    "A": {
+      "P1": 0.8091834757356582,
+      "P2": 0.8091834757356582
+    },
+    "B": {
+      "P1": 0.6834560556175908,
+      "P2": 0.016908475599913566
+    },
+    "C": {
+      "P1": 0.7972785529173689,
+      "P2": 0.2634525660185858
+    }
+  },
+  "desglose": {
+    "A": {
+      "F1": {
+        "n": 211,
+        "exhaustividad": 0.8530805687203792,
+        "puntaje_medio": 0.857601342817243
+      },
+      "F2": {
+        "n": 103,
+        "exhaustividad": 1.0,
+        "puntaje_medio": 0.9838610105991336
+      },
+      "F3": {
+        "n": 133,
+        "exhaustividad": 1.0,
+        "puntaje_medio": 0.9924513845036005
+      },
+      "F4": {
+        "n": 173,
+        "exhaustividad": 0.0,
+        "puntaje_medio": 0.006995973359041959
+      }
+    },
+    "B": {
+      "F1": {
+        "n": 211,
+        "exhaustividad": 0.8578199052132701,
+        "puntaje_medio": 0.8827760815620422
+      },
+      "F2": {
+        "n": 103,
+        "exhaustividad": 1.0,
+        "puntaje_medio": 0.9966050386428833
+      },
+      "F3": {
+        "n": 133,
+        "exhaustividad": 1.0,
+        "puntaje_medio": 0.9987853765487671
+      },
+      "F4": {
+        "n": 173,
+        "exhaustividad": 0.0,
+        "puntaje_medio": 4.75855813419912e-05
+      }
+    },
+    "C": {
+      "F1": {
+        "n": 211,
+        "exhaustividad": 0.9052132701421801,
+        "puntaje_medio": 0.9264222383499146
+      },
+      "F2": {
+        "n": 103,
+        "exhaustividad": 1.0,
+        "puntaje_medio": 0.9959850311279297
+      },
+      "F3": {
+        "n": 133,
+        "exhaustividad": 1.0,
+        "puntaje_medio": 0.999761164188385
+      },
+      "F4": {
+        "n": 173,
+        "exhaustividad": 0.0,
+        "puntaje_medio": 0.0005728914984501898
+      }
+    }
+  },
+  "desglose_validacion": {
+    "A": {
+      "F1": {
+        "n": 213,
+        "exhaustividad": 0.8309859154929577,
+        "puntaje_medio": 0.8418617292592447
+      },
+      "F2": {
+        "n": 120,
+        "exhaustividad": 0.9833333333333333,
+        "puntaje_medio": 0.9762333664840345
+      },
+      "F3": {
+        "n": 185,
+        "exhaustividad": 1.0,
+        "puntaje_medio": 0.9924409528871746
+      }
+    },
+    "B": {
+      "F1": {
+        "n": 213,
+        "exhaustividad": 0.8967136150234741,
+        "puntaje_medio": 0.8970630764961243
+      },
+      "F2": {
+        "n": 120,
+        "exhaustividad": 1.0,
+        "puntaje_medio": 0.9953203201293945
+      },
+      "F3": {
+        "n": 185,
+        "exhaustividad": 0.9945945945945946,
+        "puntaje_medio": 0.9952530264854431
+      }
+    },
+    "C": {
+      "F1": {
+        "n": 213,
+        "exhaustividad": 0.92018779342723,
+        "puntaje_medio": 0.9317051768302917
+      },
+      "F2": {
+        "n": 120,
+        "exhaustividad": 1.0,
+        "puntaje_medio": 0.9951369166374207
+      },
+      "F3": {
+        "n": 185,
+        "exhaustividad": 1.0,
+        "puntaje_medio": 0.9987077713012695
+      }
+    }
+  },
+  "economia": {
+    "A": {
+      "costo_bloque": 1001340.0,
+      "costo_mensual": 250335000.0
+    },
+    "B": {
+      "costo_bloque": 919380.0,
+      "costo_mensual": 229845000.0,
+      "ahorro_mensual_vs_A": 20490000.0
+    },
+    "C": {
+      "costo_bloque": 892860.0,
+      "costo_mensual": 223215000.0,
+      "ahorro_mensual_vs_A": 27120000.0
+    }
+  },
+  "historial": {
+    "B": [
+      {
+        "epoca": 0,
+        "auc_pr_val": 0.7898338306672924
+      },
+      {
+        "epoca": 1,
+        "auc_pr_val": 0.8450172858101267
+      },
+      {
+        "epoca": 2,
+        "auc_pr_val": 0.8598655895776856
+      },
+      {
+        "epoca": 3,
+        "auc_pr_val": 0.8699179402942135
+      },
+      {
+        "epoca": 4,
+        "auc_pr_val": 0.874441653876915
+      },
+      {
+        "epoca": 5,
+        "auc_pr_val": 0.8697008283362733
+      },
+      {
+        "epoca": 6,
+        "auc_pr_val": 0.8721589710949179
+      },
+      {
+        "epoca": 7,
+        "auc_pr_val": 0.8605250139401245
+      },
+      {
+        "epoca": 8,
+        "auc_pr_val": 0.8411645440839337
+      },
+      {
+        "epoca": 9,
+        "auc_pr_val": 0.8575421147212048
+      },
+      {
+        "epoca": 10,
+        "auc_pr_val": 0.844526966021941
+      },
+      {
+        "epoca": 11,
+        "auc_pr_val": 0.8022005610625234
+      }
+    ],
+    "C": [
+      {
+        "epoca": 0,
+        "auc_pr_val": 0.759923811040092
+      },
+      {
+        "epoca": 1,
+        "auc_pr_val": 0.8064317628671631
+      },
+      {
+        "epoca": 2,
+        "auc_pr_val": 0.8249403652279462
+      },
+      {
+        "epoca": 3,
+        "auc_pr_val": 0.863146712260618
+      },
+      {
+        "epoca": 4,
+        "auc_pr_val": 0.8552656872545836
+      },
+      {
+        "epoca": 5,
+        "auc_pr_val": 0.8481575106877122
+      },
+      {
+        "epoca": 6,
+        "auc_pr_val": 0.8354110973989413
+      },
+      {
+        "epoca": 7,
+        "auc_pr_val": 0.8493640695955488
+      },
+      {
+        "epoca": 8,
+        "auc_pr_val": 0.8451886507528711
+      },
+      {
+        "epoca": 9,
+        "auc_pr_val": 0.8479877985490779
+      },
+      {
+        "epoca": 10,
+        "auc_pr_val": 0.8570345695680943
+      },
+      {
+        "epoca": 11,
+        "auc_pr_val": 0.8336683741864456
+      }
+    ]
+  },
+  "veredicto_c": {
+    "margen": -0.01129494161629696,
+    "supera_umbral": false,
+    "sostenido_por_mecanismo": true,
+    "util": false
+  },
+  "senuelo": {
+    "todas_anclas": 0.6171191501180392,
+    "cobro": 0.5386460554371002
+  },
+  "particiones": {
+    "embargo": {
+      "transacciones": 10840,
+      "fraudes": 95,
+      "tasa_fraude": 0.008763837638376383,
+      "dia_min": 120.00066787531739,
+      "dia_max": 151.9968966917539
+    },
+    "entrenamiento": {
+      "transacciones": 322903,
+      "fraudes": 1948,
+      "tasa_fraude": 0.006032771451488527,
+      "dia_min": 0.0008464518475941318,
+      "dia_max": 119.9996544038261
+    },
+    "prueba": {
+      "transacciones": 75459,
+      "fraudes": 620,
+      "tasa_fraude": 0.008216382406339868,
+      "dia_min": 152.00342837576204,
+      "dia_max": 179.99835446635032
+    },
+    "validacion": {
+      "transacciones": 75536,
+      "fraudes": 518,
+      "tasa_fraude": 0.006857657276000848,
+      "dia_min": 122.0014210398091,
+      "dia_max": 149.99965864667715
+    }
+  }
+}

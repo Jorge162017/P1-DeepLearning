@@ -1,0 +1,78 @@
+Generando transacciones...
+Construyendo ventanas de 484,738 transacciones...
+senuelo en cobro ROC-AUC = 0.5386
+go/no-go senuelo ROC-AUC = 0.6171
+Entrenando A (boosting)...
+A entrenado | AUC-PR val = 0.8092
+Entrenando B (GRU, CPU)...
+  epoca 1/12 | AUC-PR val = 0.789834
+  epoca 2/12 | AUC-PR val = 0.845017
+  epoca 3/12 | AUC-PR val = 0.859866
+  epoca 4/12 | AUC-PR val = 0.869918
+  epoca 5/12 | AUC-PR val = 0.874442
+  epoca 6/12 | AUC-PR val = 0.869701
+  epoca 7/12 | AUC-PR val = 0.872159
+  epoca 8/12 | AUC-PR val = 0.860525
+  epoca 9/12 | AUC-PR val = 0.841165
+  epoca 10/12 | AUC-PR val = 0.857542
+  epoca 11/12 | AUC-PR val = 0.844527
+  epoca 12/12 | AUC-PR val = 0.802201
+B entrenado | AUC-PR val = 0.8744
+Entrenando C (hibrido, CPU)...
+  epoca 1/12 | AUC-PR val = 0.759924
+  epoca 2/12 | AUC-PR val = 0.806432
+  epoca 3/12 | AUC-PR val = 0.824940
+  epoca 4/12 | AUC-PR val = 0.863147
+  epoca 5/12 | AUC-PR val = 0.855266
+  epoca 6/12 | AUC-PR val = 0.848158
+  epoca 7/12 | AUC-PR val = 0.835411
+  epoca 8/12 | AUC-PR val = 0.849364
+  epoca 9/12 | AUC-PR val = 0.845189
+  epoca 10/12 | AUC-PR val = 0.847988
+  epoca 11/12 | AUC-PR val = 0.857035
+  epoca 12/12 | AUC-PR val = 0.833668
+C entrenado | AUC-PR val = 0.8631
+permutacion P1 | B = 0.6835 | C = 0.7973
+permutacion P2 | B = 0.0169 | C = 0.2635
+{
+  "auc_pr": {
+    "A": {
+      "validacion": 0.8091834757356582,
+      "prueba": 0.5493688328114291
+    },
+    "B": {
+      "validacion": 0.874441653876915,
+      "prueba": 0.6085194619879223
+    },
+    "C": {
+      "validacion": 0.863146712260618,
+      "prueba": 0.6088344005358466
+    }
+  },
+  "umbrales": {
+    "A": 0.6683417085427136,
+    "B": 0.7336683417085427,
+    "C": 0.8040201005025126
+  },
+  "veredicto_c": {
+    "margen": -0.01129494161629696,
+    "supera_umbral": false,
+    "sostenido_por_mecanismo": true,
+    "util": false
+  },
+  "controles": {
+    "puntajes_finitos_y_umbral_minimo_validacion": true,
+    "control_permutacion_a": true,
+    "f4_solo_prueba": true,
+    "compuerta_cobro_max_060": true,
+    "senal_residual_max_070": true
+  },
+  "verificacion_cpu": {
+    "dispositivo": "cpu",
+    "casos": 6,
+    "tolerancia_absoluta": 1e-06,
+    "error_maximo": 5.960464477539063e-08,
+    "hashes_verificados": true
+  }
+}
+Listo: /Users/jorgelopez/Downloads/P1-DeepLearning/Proyecto1/artefactos/causal_v2 (299.6s)

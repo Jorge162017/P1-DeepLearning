@@ -1,0 +1,7 @@
+{
+  "dispositivo": "cpu",
+  "casos": 6,
+  "tolerancia_absoluta": 1e-06,
+  "error_maximo": 5.960464477539063e-08,
+  "hashes_verificados": true
+}

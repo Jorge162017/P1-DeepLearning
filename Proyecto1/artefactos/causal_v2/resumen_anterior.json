@@ -1,0 +1,23 @@
+{
+  "auc_pr": {
+    "A": {
+      "validacion": 0.8101,
+      "prueba": 0.5486
+    },
+    "B": {
+      "validacion": 0.8822,
+      "prueba": 0.6103
+    },
+    "C": {
+      "validacion": 0.8566,
+      "prueba": 0.5999
+    }
+  },
+  "umbrales": {
+    "A": 0.799,
+    "B": 0.6482,
+    "C": 0.3065
+  },
+  "origen": "proyecto1_herrarte_lopez.ipynb: tabla AUC-PR publicada",
+  "decimales_publicados": 4
+}

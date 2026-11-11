@@ -1,0 +1,33 @@
+{
+  "rubros": [
+    "supermercado",
+    "restaurante",
+    "combustible",
+    "farmacia",
+    "ropa",
+    "electronica",
+    "viajes",
+    "entretenimiento",
+    "servicios",
+    "ferreteria"
+  ],
+  "canales": [
+    "chip",
+    "contactless",
+    "ecommerce",
+    "atm"
+  ],
+  "ciudades": [
+    "guatemala",
+    "quetzaltenango",
+    "escuintla",
+    "coban",
+    "huehuetenango",
+    "peten",
+    "miami",
+    "madrid",
+    "ciudad_de_mexico",
+    "bogota"
+  ],
+  "nota": "codigo = indice + 1; 0 reservado a relleno y categorias no vistas"
+}

@@ -1,0 +1,18 @@
+{
+  "semilla": 42,
+  "n_tarjetas": 6000,
+  "n_dias": 180,
+  "tasa_fraude_objetivo": 0.006,
+  "prop_mecanismos": {
+    "F1": 0.4,
+    "F2": 0.25,
+    "F3": 0.35
+  },
+  "prop_senuelo_f1": 0.03,
+  "prop_f4_en_prueba": 0.3,
+  "dia_fin_entrenamiento": 119,
+  "dia_inicio_validacion": 122,
+  "dia_fin_validacion": 149,
+  "dia_inicio_prueba": 152,
+  "dia_fin_prueba": 179
+}

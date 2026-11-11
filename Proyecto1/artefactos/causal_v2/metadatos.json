@@ -1,0 +1,115 @@
+{
+  "version_preprocesamiento": "causal_v2",
+  "fecha_utc": "2026-11-11T14:37:24.009560+00:00",
+  "git_head_base": "f770a7310dfbfae8bd50b06dcec3b7acb194a42b",
+  "codigo_sha256": {
+    "src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/config.py": "5cee291c2e5f938e0bade93a8857f099e485272b74c43dbd0545e6e82657c7fb",
+    "src/evaluacion.py": "a470b4af3a0edb317e67b762ddced7962a6effb8880b847bc6ada9d588c4813f",
+    "src/experimento.py": "3b4a847160829cc848a6626fa330acd689e29676949379269b328f628823414b",
+    "src/figuras.py": "21c3c75d2a9e25f75b9a31aa72399c042bbebfece7b1bebbf005058473d487ee",
+    "src/generador.py": "5fe4bd217b4aef15670164f07503d318d169eea244741970469585221467229f",
+    "src/modelos.py": "7ed569396901c9955822d3c6f549607eb31313e64b11441cc23d82b0d1905776",
+    "src/reentrenar.py": "90337c3e5bb75dfac5c5e84095bc5520f2f1b907fb21554df8afe8785556e8bc",
+    "src/ventanas.py": "9618ff0a5e3f53edccb1fffed54809f885786601d79faf0a81464f7f964eecb0"
+  },
+  "python": "3.13.12",
+  "plataforma": "macOS-26.2-arm64-arm-64bit-Mach-O",
+  "versiones": {
+    "torch": "2.13.0",
+    "numpy": "2.5.1",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.0",
+    "matplotlib": "3.11.1"
+  },
+  "entrenamiento": {
+    "semilla": 42,
+    "epocas": 12,
+    "lote": 256,
+    "lr": 0.001,
+    "dispositivo": "cpu",
+    "hilos": 4,
+    "algoritmos_deterministas": true,
+    "seleccion_epoca": "max_average_precision_validacion"
+  },
+  "config_generador": {
+    "semilla": 42,
+    "n_tarjetas": 6000,
+    "n_dias": 180,
+    "tasa_fraude_objetivo": 0.006,
+    "prop_mecanismos": {
+      "F1": 0.4,
+      "F2": 0.25,
+      "F3": 0.35
+    },
+    "prop_senuelo_f1": 0.03,
+    "prop_f4_en_prueba": 0.3,
+    "dia_fin_entrenamiento": 119,
+    "dia_inicio_validacion": 122,
+    "dia_fin_validacion": 149,
+    "dia_inicio_prueba": 152,
+    "dia_fin_prueba": 179
+  },
+  "ventana": 20,
+  "arquitecturas": {
+    "B": {
+      "n_rubros": 11,
+      "n_canales": 5,
+      "n_ciudades": 11,
+      "n_agregados": 0,
+      "dim_emb": 8,
+      "oculto": 64,
+      "capas": 1
+    },
+    "C": {
+      "n_rubros": 11,
+      "n_canales": 5,
+      "n_ciudades": 11,
+      "n_agregados": 15,
+      "dim_emb": 8,
+      "oculto": 64,
+      "capas": 1
+    }
+  },
+  "umbrales": {
+    "A": 0.6683417085427136,
+    "B": 0.7336683417085427,
+    "C": 0.8040201005025126
+  },
+  "costos": {
+    "fn": 4200.0,
+    "fp": 180.0
+  },
+  "criterio_c": {
+    "margen_minimo": 0.02,
+    "tolerancia_exhaustividad": 0.02,
+    "min_mecanismos": 2
+  },
+  "controles": {
+    "puntajes_finitos_y_umbral_minimo_validacion": true,
+    "control_permutacion_a": true,
+    "f4_solo_prueba": true,
+    "compuerta_cobro_max_060": true,
+    "senal_residual_max_070": true
+  },
+  "duracion_segundos": 299.55509850001545,
+  "sha256": {
+    "casos_inferencia.json": "bfc9537eabf65c5fa4ff06aa7061ab7c4ba593bf364f3de6e5156e50283801df",
+    "config_generador.json": "8f784ddcfaa3472eafd38f5c25debd7793836a00fd1c307d523d9a52c992fa17",
+    "escaladores.json": "c3bc93a3638c1411646049e5dfe1ea22f1a9f74a5919eab059f10a59aca8d5d1",
+    "figuras/fig1_particion.png": "1493fea2d9c355d45802d540752da60a82ab04e21e3e3b7a4520adb7c651019b",
+    "figuras/fig2_curvas_pr.png": "4a2f07bc2363f02efb128360c31999187fb439aa37e893b553a36446b4bc39e9",
+    "figuras/fig3_permutacion.png": "db8b3cd315de0276623e9ef14204769b04ce4020bf6c419f189c4db7e5bf1edd",
+    "figuras/fig4_desglose.png": "cff3b152a01120a86966caeb3a28b6d3c3e69a7cfab435b082036f1c91282223",
+    "figuras/fig5_costo.png": "107de30cd7df749ca030e58ce68d96048b60326ce128cf7c69cc85bc98251eaa",
+    "modelo_a_boosting.pkl": "8caea94b87f73ca7665964554ab6ed399451571b96795cbe20f0a0e009882649",
+    "modelo_b_gru.pt": "259f9467e2d317c0ca8cc6665220320b75e6fa61f4c6f03707ef67d95607345a",
+    "modelo_c_hibrido.pt": "bcd143c87987f6c319a1bb207b71ee0dca5bc7d39c601b44428eb1e617470690",
+    "puntajes.npz": "7537b20a4f221bd2ce9e0e378f2fdc19386c5eb1cf441acc04c9fc80ef56cb7d",
+    "resultados.pkl": "a5d698f58f7afea52ac479f550bc716c5417c415305e4c8d29596e989dd7b990",
+    "resumen_anterior.json": "767760dc05b7ad81f880c42f586cb5765fc055724f7fcf5c2eb65ac04c265284",
+    "resumen_metricas.json": "ed5a26a8cec2b4d290adb6e57e0d3967f009e483f713069826a32b6af27ba503",
+    "vocabularios.json": "12c121942adecb4db8b28211f323ec3c26efc6f2aa2100f3cc297d2caac86147"
+  }
+}
