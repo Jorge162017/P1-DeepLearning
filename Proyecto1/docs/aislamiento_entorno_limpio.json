@@ -1,0 +1,13 @@
+{
+  "python": "3.13.12",
+  "sin_paquetes_del_sistema": true,
+  "user_site_habilitado": false,
+  "modulos_comprobados": [
+    "numpy",
+    "pandas",
+    "torch",
+    "sklearn",
+    "fastapi",
+    "pytest"
+  ]
+}

@@ -1,0 +1,14 @@
+INFO:     Started server process [35052]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8765 (Press CTRL+C to quit)
+INFO:     {"evento": "solicitud_http", "id_solicitud": "610735de95d84e188174dc8fc21d5cdb", "fecha_utc": "2026-11-11T15:45:50.927269+00:00", "metodo": "GET", "ruta": "/health", "estado_http": 200, "duracion_ms": 1.746, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     127.0.0.1:59054 - "GET /health HTTP/1.1" 200 OK
+INFO:     {"evento": "solicitud_http", "id_solicitud": "0ae5ab16899f4d0fa1b9dc25c6762e9e", "fecha_utc": "2026-11-11T15:45:50.955036+00:00", "metodo": "POST", "ruta": "/predict", "estado_http": 200, "duracion_ms": 26.177, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     127.0.0.1:59055 - "POST /predict HTTP/1.1" 200 OK
+INFO:     {"evento": "solicitud_http", "id_solicitud": "8a1155e4aa464e058aeea4ef9ed48191", "fecha_utc": "2026-11-11T15:45:50.960589+00:00", "metodo": "GET", "ruta": "/openapi.json", "estado_http": 200, "duracion_ms": 4.679, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     127.0.0.1:59056 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [35052]

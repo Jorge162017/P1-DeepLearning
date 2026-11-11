@@ -1,0 +1,23 @@
+{
+  "tipo_prueba": "HTTP real local desde clon y venv aislados",
+  "health": {
+    "estado_http": 200,
+    "respuesta": {
+      "estado": "ok",
+      "dispositivo": "cpu",
+      "version_modelo": "B-causal_v2-259f9467e2d3"
+    }
+  },
+  "predict": {
+    "estado_http": 200,
+    "respuesta": {
+      "puntaje_riesgo": 0.041290659457445145,
+      "version_modelo": "B-causal_v2-259f9467e2d3"
+    },
+    "id_solicitud": "0ae5ab16899f4d0fa1b9dc25c6762e9e"
+  },
+  "openapi_verificado": true,
+  "tiempo_hasta_health_segundos": 2.677,
+  "limite_sondeo_arranque_segundos": 60,
+  "sondeo_inicial_10s": "agotado; repetido con margen mayor"
+}

@@ -1,0 +1,9 @@
+........................................................................ [ 53%]
+..............................................................           [100%]
+=============================== warnings summary ===============================
+../../venv/lib/python3.13/site-packages/starlette/testclient.py:45
+  /private/var/folders/fx/l7lvbwlj5670rmr3wd4q61yw0000gn/T/deep-learning-limpio-4jp88chk/venv/lib/python3.13/site-packages/starlette/testclient.py:45: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+134 passed, 1 warning in 49.69s
