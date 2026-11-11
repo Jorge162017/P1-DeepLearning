@@ -1,8 +1,9 @@
 # Proyecto final: distribución en pareja
 
 Jorge López: primera mitad (modelo, inferencia y API).
-Compañero: segunda mitad (interfaz, despliegue y evidencias).
-Ambos: integración, revisión técnica y presentación.
+Compañero: segunda mitad (interfaz, despliegue, evidencias y elaboración de toda
+la presentación final: diapositivas y PDF).
+Ambos: integración, revisión técnica, ensayo, exposición y respuestas a preguntas.
 
 El PDF establece tríos; este plan sigue la decisión de trabajar en pareja.
 Confirmen con el docente que acepta esa modalidad. Entrega: 15 de noviembre de
@@ -26,7 +27,6 @@ sistema bancario validado. No hace falta entrenar una arquitectura nueva.
 - [x] Compartir preparación entre entrenamiento e inferencia y aceptar
   categorías desconocidas con índice 0.
 - [x] Agregar pruebas de independencia del futuro y paridad de características.
-- [ ] Revisar juntos el contrato y los resultados de las pruebas.
 
 ### 2. Regenerar y validar el modelo
 
@@ -44,7 +44,7 @@ sistema bancario validado. No hace falta entrenar una arquitectura nueva.
   en seis casos guardados. Informe en `Proyecto1/docs/VALIDACION_CAUSAL.md`.
 - [x] Implementar el cargador reutilizable de B y medir latencia en CPU;
   código en `Proyecto1/src/inferencia.py` y mediciones en
-  `Proyecto1/docs/LATENCIA_CPU.md`. Siguiente paso: integrar con la API.
+  `Proyecto1/docs/LATENCIA_CPU.md`. Integración local con la API completada.
 
 ### 3. API y contrato
 
@@ -56,18 +56,18 @@ sistema bancario validado. No hace falta entrenar una arquitectura nueva.
   datos inválidos, categorías nuevas y secuencias cortas.
 - [x] Fijar dependencias reproducibles y documentar ejecución y ejemplo de uso.
 
-Contrato inicial para coordinar la interfaz: JSON con `transacciones`, una lista
+Contrato implementado para coordinar la interfaz: JSON con `transacciones`, una lista
 cronológica de 1 a 20 eventos de una sola tarjeta, cada uno con `marca_tiempo`
 (días desde un origen fijo documentado), `monto` positivo en Q, `rubro`, `canal`
-y `ciudad`. No se piden etiquetas. Ejemplo de salida propuesto:
-`{"puntaje_riesgo": 0.72, "version_modelo": "..."}`. Acordar este contrato
-antes de desarrollar la conexión de la interfaz.
+y `ciudad`. No se piden etiquetas. Ejemplo de formato de salida:
+`{"puntaje_riesgo": 0.72, "version_modelo": "..."}`. El contrato completo y ejecutable está en `Proyecto1/docs/API.md`;
+revisarlo juntos antes de desarrollar la conexión de la interfaz.
 
 ### 4. Documentación a cargo de Jorge
 
-- [ ] README raíz: problemática, usuario, decisión, supuestos, modelo planteado
+- [x] README raíz: problemática, usuario, decisión, supuestos, modelo planteado
   y validación de hipótesis. Distinguir resultados originales y corregidos.
-- [ ] Explicar ingeniería de características, esquema de entrada, origen de
+- [x] Explicar ingeniería de características, esquema de entrada, origen de
   tiempo, categorías desconocidas, umbral, costos y limitaciones.
 
 ## Segunda mitad — Compañero
@@ -79,8 +79,8 @@ antes de desarrollar la conexión de la interfaz.
 - [ ] Mostrar puntaje y explicación de uso, estados de carga y errores de API.
   No presentar el puntaje como probabilidad calibrada sin comprobarlo.
 - [ ] Conectar con el contrato acordado y probar secuencias cortas y entradas
-  inválidas. Puede comenzar con una respuesta simulada claramente identificada
-  mientras Jorge termina la API; quitarla en la versión publicada.
+  inválidas. La API real ya está disponible en el repositorio; usarla para
+  la integración y para todas las evidencias de la versión publicada.
 
 ### 6. Despliegue, monitoreo y pruebas de uso
 
@@ -101,18 +101,35 @@ antes de desarrollar la conexión de la interfaz.
 - [ ] Diagrama: datos → preparación → entrenamiento → artefactos → servicio →
   interfaz, más registros/monitoreo. Aclarar qué ocurre fuera de línea y en línea.
 - [ ] Agregar enlaces reales al servicio, API, evidencias y presentación PDF.
-- [ ] Preparar las diapositivas de arquitectura, demo, operación y límites.
+
+### 8. Presentación completa — Compañero
+
+- [ ] Crear **todas** las diapositivas: problemática, usuario y decisión,
+  planificación, supuestos, modelo, validación de hipótesis, arquitectura,
+  demo, evidencias, operación y limitaciones. Jorge no tiene asignada la
+  elaboración de diapositivas.
+- [ ] Usar el README raíz y `Proyecto1/docs/VALIDACION_CAUSAL.md` como fuentes
+  de las cifras corregidas. Explicar por qué se mantiene B y por qué C no
+  cumplió su criterio; no tomar las métricas históricas como resultados actuales.
+- [ ] Ajustar el material a 10 minutos, preparar la demostración y exportar
+  el PDF final dentro del repositorio, enlazándolo desde el README raíz.
+  El PDF de Proyecto 1 es material de partida y no la entrega final.
+- [ ] Compartir el material con Jorge para que ambos puedan revisarlo, ensayar
+  y responder preguntas. Crear el material corresponde al compañero; la
+  participación oral y el dominio del contenido corresponden a ambos.
+
 
 ## Integración y cierre — ambos
 
-- [ ] Revisar cambios del otro y poder explicar cualquier archivo o decisión.
+- [ ] Revisar juntos el contrato y los resultados de las pruebas, comprobar
+  la integración y poder explicar cualquier archivo o decisión.
 - [ ] Completar las siete secciones del README raíz y actualizar declaración
   de IA con los usos del final y lo verificado por ustedes.
-- [ ] Crear la presentación final en PDF; la presentación original de Proyecto 1
-  es material de partida, no la presentación final completa.
 - [ ] Ensayar 10 minutos: Jorge presenta problema/modelo/validación (5 minutos)
   y compañero arquitectura/demo/evidencias/límites (5 minutos). Ambos responden.
-- [ ] Clonar en un entorno limpio y seguir el README para verificar reproducción.
+- [x] Clonar en un entorno limpio y seguir el README para verificar reproducción.
+  Verificación en clon local independiente: 134 pruebas y HTTP real correctos.
+  Informe: `Proyecto1/docs/REPRODUCCION_LIMPIA.md`.
 - [ ] Verificar repositorio público o compartido con docente, enviar el enlace
   antes del límite y confirmar que la última versión incluye todos los archivos.
 
@@ -123,8 +140,95 @@ antes de desarrollar la conexión de la interfaz.
 | 11 nov | Preparación causal, pruebas, contrato y reentrenamiento | Interfaz inicial y selección de hosting |
 | 12 nov | API, nuevos artefactos y validación | Conexión de interfaz, despliegue y registros |
 | 13 nov | Integración y presentación si corresponde | Demo, evidencias y presentación si corresponde |
-| 14 nov | Reproducción y documentación | Pruebas externas, PDF y README |
+| 14 nov | Revisar integración y estudiar material para exponer | Pruebas externas, todas las diapositivas, PDF y README |
 | 15 nov | Revisar entrega y enlaces con margen antes de 23:59 | Revisar entrega y enlaces con margen antes de 23:59 |
+
+## Dónde desplegar — decisión e implementación del compañero
+
+Opciones revisadas el **11 de noviembre de 2026**. Esta sección es una guía para
+el compañero; todavía no se ha contratado ni desplegado ningún servicio.
+Confirmar precio y disponibilidad en la cuenta antes de activar un plan.
+
+### Recomendación: Render para la API
+
+Render tiene una [guía oficial para FastAPI](https://render.com/docs/deploy-fastapi)
+y permite conectar el repositorio de GitHub a un Web Service. Es la ruta sugerida
+para publicar la API actual sin cambiar el framework. Elegir el plan después
+de medir consumo de memoria en Linux; **2 GB es un punto de partida propuesto**,
+no una necesidad medida ni una garantía de capacidad.
+
+El plan Free tiene 512 MB de RAM y se suspende tras 15 minutos sin tráfico;
+al reactivarse hay una espera. Su memoria podría resultar insuficiente para
+PyTorch y las demás librerías aunque los pesos sean pequeños. No hemos medido
+este proceso en ese plan. Fuentes: [planes de cómputo](https://render.com/docs/compute-plans)
+y [límites del plan gratuito](https://render.com/docs/free). Para una demo con
+horario fijo, valorar un plan de pago y revisar su costo antes de elegirlo.
+
+Configuración inicial propuesta para que el compañero la verifique
+([versión de Python en Render](https://render.com/docs/python-version)):
+
+| Parámetro | Valor |
+|---|---|
+| Repositorio / rama | `Jorge162017/P1-DeepLearning`, `main` |
+| Servicio | Web Service de Python |
+| Root Directory | `Proyecto1` |
+| Python | `3.13.12` mediante `PYTHON_VERSION` |
+| Instalación | `python -m pip install -r requirements-api.txt` |
+| Start Command | `python -m uvicorn src.api:app --host 0.0.0.0 --port $PORT` |
+| Health Check Path | `/health` |
+| Hilos | `RIESGO_HILOS=1` inicialmente; ajustar a los recursos y medir |
+| Artefactos | `artefactos/causal_v2/`, incluidos en Git |
+
+La instalación limpia que verificamos es de macOS ARM64. El compañero debe
+validar instalación y puntajes en Linux, usar la distribución de PyTorch para
+CPU que corresponda ([selector oficial](https://pytorch.org/get-started/locally/))
+y comprobar que no se descarguen dependencias de GPU innecesarias. Conservar las
+versiones entrenadas y registrar cualquier ajuste de dependencias para el hosting.
+No volver a entrenar durante el arranque o el despliegue.
+
+Para la interfaz, un **Static Site de Render** sirve si el resultado es HTML/CSS/JS
+estático; esa modalidad está descrita en [Render Free](https://render.com/docs/free).
+Si la interfaz necesita un servidor propio, elegir el servicio adecuado a su
+framework. Cuando navegador y API estén en orígenes distintos, el compañero debe
+configurar CORS para el origen publicado de la interfaz y probarlo en navegador;
+la API actual todavía no incluye esa configuración. Documentar las URLs finales.
+
+### Alternativa: Hugging Face Spaces con Docker
+
+Es una opción orientada a demos de modelos. Usar un Space Docker que arranque
+FastAPI en `0.0.0.0:7860`, con `sdk: docker` y `app_port: 7860`; hace falta crear
+y probar el Dockerfile. Ver [Docker Spaces](https://huggingface.co/docs/hub/spaces-sdks-docker).
+
+CPU Basic ofrece 2 vCPU y 16 GB de RAM, sin costo por hora de ese hardware, pero
+**no asumir que crear un Space Docker sea gratuito**: la documentación actual
+indica un plan de pago para crear nuevos Spaces de cómputo. Revisar las condiciones
+de la cuenta. Fuentes: [Spaces Overview](https://huggingface.co/docs/hub/en/spaces-overview)
+y [hardware y suspensión](https://huggingface.co/docs/hub/spaces-gpus).
+
+### Criterios para dar por terminado el despliegue
+
+- [ ] Elegir proveedor y presupuesto; registrar la configuración real.
+- [ ] Conseguir `/health` público en estado correcto y comprobar los seis casos
+  guardados contra `casos_inferencia.json` en el hosting, con tolerancia 1e-6.
+  Investigar diferencias; no cambiar la tolerancia solo para ocultarlas.
+- [ ] Conectar la interfaz a la API real, probar errores y confirmar CORS si aplica.
+- [ ] Medir RAM, arranque y latencia en el servidor; las cifras locales no
+  describen automáticamente el rendimiento de un plan de hosting.
+- [ ] Probar desde otro dispositivo o sesión y guardar capturas y registros
+  de uso sin transacciones sensibles, incluyendo la versión del modelo.
+- [ ] Agregar enlaces reales y evidencia al README y al PDF de presentación.
+
+## Estado de entrega de la mitad de Jorge
+
+La implementación y documentación asignadas a Jorge están completas: preparación
+causal, reentrenamiento y validación, artefactos, cargador CPU, latencia local,
+API HTTP, README técnico y reproducción desde un clon y entorno aislados.
+La reproducción limpia pasó 134 pruebas y solicitudes HTTP reales.
+
+Quedan como actividades compartidas la coordinación con el compañero, revisión
+de la integración y preparación para exponer y contestar preguntas. La interfaz,
+el hosting, las evidencias externas y **toda la elaboración de la presentación**
+corresponden al compañero según este reparto.
 
 ## Git: subir el trabajo en varios commits
 
@@ -145,7 +249,8 @@ Secuencia sugerida de commits (hacerlos cuando el cambio correspondiente exista)
 | Compañero | `feat: conectar interfaz con API de riesgo` | Conexión y manejo de errores |
 | Compañero | `deploy: configurar servicio y monitoreo` | Hosting, arranque y registros |
 | Compañero | `docs: agregar arquitectura y evidencias de uso` | Diagrama, capturas y registros |
-| Ambos | `docs: completar README y presentacion final` | Siete secciones, IA, enlaces y PDF |
+| Compañero | `docs: agregar presentacion final completa en PDF` | Todas las diapositivas y PDF final |
+| Ambos | `docs: completar README de entrega` | Siete secciones, IA y enlaces verificados |
 | Ambos | `fix: resolver hallazgos de verificacion final` | Solo correcciones reales que surjan |
 
 Usar `git add` con archivos concretos, revisar `git diff --staged`, hacer
