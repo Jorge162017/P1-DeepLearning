@@ -1,10 +1,13 @@
 """Ventanas de K transacciones, agregados causales y particion temporal."""
+from collections import Counter
 from dataclasses import dataclass
 
 import numpy as np
 import pandas as pd
 
 from src.config import CANALES, CIUDADES, K, RUBROS, ConfigGenerador
+
+VERSION_PREPROCESAMIENTO = "causal_v2"
 
 COLUMNAS_AGREGADAS = [
     # rasgos del ancla
@@ -108,8 +111,9 @@ def construir_caracteristicas(df: pd.DataFrame) -> Caracteristicas:
             hist = slice(desde, j)             # solo las previas, sin el ancla
             vent = slice(desde, j + 1)         # previas + ancla, para la secuencia
             fila = idx[j]
-            ciudad_base = (pd.Series(ciudades[hist]).mode().iloc[0]
-                           if j > desde else ciudades[j])
+            frecuencias = Counter(ciudades[hist])
+            ciudad_base = (min(frecuencias, key=lambda c: (-frecuencias[c], c))
+                           if frecuencias else ciudades[j])
 
             # --- secuencia (alineada a la derecha; el ancla queda en K-1) ---
             largo = j + 1 - desde

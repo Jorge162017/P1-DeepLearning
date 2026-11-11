@@ -69,3 +69,14 @@ def test_rechaza_vacio_desorden_y_exceso():
     for datos in [[], eventos[::-1], eventos * 6]:
         with pytest.raises(ValueError):
             preparar_inferencia(datos, ESC)
+
+
+def test_ciudad_base_desempata_solo_con_historia_previa():
+    df = _marco_a_mano().iloc[:3].copy()
+    # Antes del tercer evento hay empate: guatemala gana alfabeticamente.
+    # Incluir el ancla haria ganar madrid, ocultando su lejania.
+    df['ciudad'] = ['guatemala', 'madrid', 'madrid']
+    d = construir_dataset(df, ConfigGenerador())
+    assert d.seq_num[-1, -1, 6] == 2
+    assert d.agregados.iloc[-1]['es_ciudad_base'] == 0
+    np.testing.assert_array_equal(d.seq_num[-1, -3:, 6], [0, 2, 2])

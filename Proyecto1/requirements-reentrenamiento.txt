@@ -1,0 +1,8 @@
+# Entorno utilizado para causal_v2: Python 3.13.12, CPU.
+numpy==2.5.1
+pandas==2.3.3
+scikit-learn==1.9.0
+scipy==1.18.0
+torch==2.13.0
+matplotlib==3.11.1
+pytest==9.2.0

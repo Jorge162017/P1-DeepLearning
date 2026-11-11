@@ -35,6 +35,9 @@ class Resultados:
     puntajes_validacion: dict = field(default_factory=dict)
     puntajes_prueba: dict = field(default_factory=dict)
     go_no_go: float = float("nan")
+    go_no_go_cobro: float = float("nan")
+    particiones: dict = field(default_factory=dict)
+    casos_inferencia: list = field(default_factory=list)
 
 
 def ejecutar_experimento(config: ConfigGenerador, epocas: int = 12,
@@ -45,8 +48,17 @@ def ejecutar_experimento(config: ConfigGenerador, epocas: int = 12,
             print(*a, flush=True)
 
     r = Resultados()
+    log("Generando transacciones...")
     df = generar(config)
+    log(f"Construyendo ventanas de {len(df):,} transacciones...")
     d = construir_dataset(df, config)
+    r.particiones = d.meta.groupby("particion").agg(
+        transacciones=("id_tx", "size"), fraudes=("es_fraude", "sum"),
+        tasa_fraude=("es_fraude", "mean"),
+        dia_min=("marca_tiempo", "min"), dia_max=("marca_tiempo", "max"),
+    ).to_dict(orient="index")
+    r.go_no_go_cobro = verificar_senuelo(d, semilla=semilla, solo_cobro=True)
+    log(f"senuelo en cobro ROC-AUC = {r.go_no_go_cobro:.4f}")
     r.go_no_go = verificar_senuelo(d, semilla=semilla)
     log(f"go/no-go senuelo ROC-AUC = {r.go_no_go:.4f}")
 
@@ -64,6 +76,7 @@ def ejecutar_experimento(config: ConfigGenerador, epocas: int = 12,
     peso = float((y[ent] == 0).sum() / max(1, (y[ent] == 1).sum()))
 
     # --- A ---
+    log("Entrenando A (boosting)...")
     modelo_a = entrenar_a(agr_z[ent].to_numpy(), y[ent],
                           agr_z[val].to_numpy(), y[val], semilla=semilla)
     p_a_val = puntajes_a(modelo_a, agr_z[val].to_numpy())
@@ -78,15 +91,17 @@ def ejecutar_experimento(config: ConfigGenerador, epocas: int = 12,
     # global de torch, y sin esto la misma semilla daba numeros distintos
     torch.manual_seed(semilla)
     modelo_b = ModeloSecuencial(*n_cat, n_agregados=0)
+    log("Entrenando B (GRU, CPU)...")
     r.historial["B"] = entrenar_secuencial(modelo_b, t_ent, t_val, peso,
-                                           epocas=epocas, semilla=semilla)
+                                           epocas=epocas, semilla=semilla, verbose=verbose)
     p_b_val = puntajes_secuencial(modelo_b, t_val)
     log(f"B entrenado | AUC-PR val = {auc_pr(y[val], p_b_val):.4f}")
 
     torch.manual_seed(semilla)
     modelo_c = ModeloSecuencial(*n_cat, n_agregados=len(COLUMNAS_AGREGADAS))
+    log("Entrenando C (hibrido, CPU)...")
     r.historial["C"] = entrenar_secuencial(modelo_c, t_ent, t_val, peso,
-                                           epocas=epocas, semilla=semilla)
+                                           epocas=epocas, semilla=semilla, verbose=verbose)
     p_c_val = puntajes_secuencial(modelo_c, t_val)
     log(f"C entrenado | AUC-PR val = {auc_pr(y[val], p_c_val):.4f}")
 
@@ -132,6 +147,32 @@ def ejecutar_experimento(config: ConfigGenerador, epocas: int = 12,
 
     r._modelos = {"A": modelo_a, "B": modelo_b, "C": modelo_c}
     r._escaladores = {"secuencia": esc_seq, "agregados": esc_agr}
+
+    # Casos pequenos para verificar luego carga en CPU contra la salida original.
+    # Se seleccionan por mecanismo en validacion, nunca por puntaje ni por prueba.
+    elegidos = [0]
+    for mecanismo in ["legitimo", "F1", "F2", "F3", "senuelo_f1"]:
+        indices = np.flatnonzero(val & (d.meta["mecanismo"].to_numpy() == mecanismo))
+        if len(indices):
+            elegidos.append(int(indices[0]))
+    for i in elegidos:
+        tarjeta = df.iloc[i]["id_tarjeta"]
+        eventos = df.iloc[:i + 1]
+        eventos = eventos[eventos["id_tarjeta"] == tarjeta].tail(20)
+        entrada = eventos[["marca_tiempo", "monto", "rubro", "canal", "ciudad"]]
+        lote_caso = {
+            "cat": torch.from_numpy(d.seq_cat[i:i+1].copy()).long(),
+            "num": torch.from_numpy(seq_z[i:i+1].copy()).float(),
+            "mascara": torch.from_numpy(d.mascara[i:i+1].copy()),
+            "y": torch.zeros(1),
+        }
+        r.casos_inferencia.append({
+            "id_tx": int(d.meta.iloc[i]["id_tx"]),
+            "particion": str(d.meta.iloc[i]["particion"]),
+            "mecanismo": str(d.meta.iloc[i]["mecanismo"]),
+            "transacciones": entrada.to_dict(orient="records"),
+            "puntaje_b_esperado": float(puntajes_secuencial(modelo_b, lote_caso)[0]),
+        })
 
     if not leer_prueba:
         return r

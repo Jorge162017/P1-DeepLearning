@@ -95,7 +95,7 @@ class ModeloSecuencial(nn.Module):
 
 
 def entrenar_secuencial(modelo, datos_ent, datos_val, peso_positivo,
-                        epocas=12, semilla=42, dispositivo="cpu", lote=256):
+                        epocas=12, semilla=42, dispositivo="cpu", lote=256, verbose=False):
     torch.manual_seed(semilla)
     modelo = modelo.to(dispositivo)
     opt = torch.optim.Adam(modelo.parameters(), lr=1e-3)
@@ -122,6 +122,8 @@ def entrenar_secuencial(modelo, datos_ent, datos_val, peso_positivo,
         p_val = puntajes_secuencial(modelo, datos_val, dispositivo)
         metrica = auc_pr(datos_val["y"].numpy(), p_val)
         historial.append({"epoca": epoca, "auc_pr_val": metrica})
+        if verbose:
+            print(f"  epoca {epoca + 1}/{epocas} | AUC-PR val = {metrica:.6f}", flush=True)
         if metrica > mejor:
             mejor = metrica
             mejores_pesos = {k: v.detach().clone() for k, v in modelo.state_dict().items()}
