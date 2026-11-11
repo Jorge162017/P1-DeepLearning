@@ -220,3 +220,24 @@ las etiquetas reales llegan con semanas de retraso y eso cambia cómo se puede e
 sin fuga. Y el costo real de un bloqueo: los Q180 salen del enunciado, y si el costo
 reputacional se pareciera al del fraude, el umbral subiría y la ventaja de B se
 achicaría.
+
+## Preparación causal para el Proyecto Final
+
+`src.ventanas.construir_caracteristicas` comparte la preparación de entrenamiento
+con `preparar_inferencia(transacciones, escaladores["secuencia"])`. Esta última
+recibe entre 1 y 20 eventos cronológicos de una tarjeta, sin etiquetas, con
+`marca_tiempo`, `monto`, `rubro`, `canal` y `ciudad`; devuelve arrays `cat`, `num`
+y `mascara` con lote de tamaño 1, listos para convertir a tensores de PyTorch.
+Los eventos desconocidos conservan máscara verdadera y categoría 0.
+
+La ciudad base es ahora la moda de las 19 transacciones previas al ancla
+(desempate alfabético); sin historia es la ciudad del ancla. La lejanía de toda
+la ventana se calcula respecto a esa base. Esto permite reproducir exactamente
+la última ventana sin acceder a transacciones futuras ni a historia adicional.
+
+**Pendiente antes de producción:** los pesos, escaladores, métricas, figuras y
+umbrales incluidos arriba pertenecen a la preparación original, que calculaba
+la ciudad base con la historia completa. Hay que regenerarlos y validar de nuevo;
+no deben presentarse como resultados del flujo causal corregido. Las pruebas de
+paridad de características no certifican los puntajes de esos pesos anteriores.
+El reparto completo está en `../DISTRIBUCION_PROYECTO_FINAL.md`.
