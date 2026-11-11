@@ -30,17 +30,21 @@ sistema bancario validado. No hace falta entrenar una arquitectura nueva.
 
 ### 2. Regenerar y validar el modelo
 
-- [ ] Reentrenar A, B y C con la preparación corregida y regenerar escaladores,
-  pesos, resultados y figuras. Los artefactos existentes son del flujo anterior.
-- [ ] Mantener la hipótesis y el criterio original; documentar el cambio causal
+- [x] Reentrenar A, B y C con la preparación corregida y regenerar escaladores,
+  pesos, resultados y figuras en `Proyecto1/artefactos/causal_v2/`. Los archivos
+  directamente en `Proyecto1/artefactos/` conservan el Proyecto 1 original.
+- [x] Mantener la hipótesis y el criterio original; documentar el cambio causal
   y comparar resultados anteriores y corregidos. No ajustar decisiones mirando
   repetidamente prueba; declarar que el conjunto ya se usó en Proyecto 1.
-- [ ] Recalcular umbrales en validación y reportar comparación con A, métricas
+- [x] Recalcular umbrales en validación y reportar comparación con A, métricas
   de prueba, permutaciones y límites (incluido F4).
-- [ ] Guardar metadatos de versión del preprocesamiento, configuración,
+- [x] Guardar metadatos de versión del preprocesamiento, configuración,
   arquitectura, semilla, métricas y umbral junto a los nuevos artefactos.
-- [ ] Probar carga de pesos en CPU y paridad del puntaje de entrenamiento con
-  el de inferencia. Medir latencia; no prometerla sin medición.
+- [x] Comprobar la exportación de pesos de B en CPU y la paridad del puntaje
+  en seis casos guardados. Informe en `Proyecto1/docs/VALIDACION_CAUSAL.md`.
+- [x] Implementar el cargador reutilizable de B y medir latencia en CPU;
+  código en `Proyecto1/src/inferencia.py` y mediciones en
+  `Proyecto1/docs/LATENCIA_CPU.md`. Siguiente paso: integrar con la API.
 
 ### 3. API y contrato
 

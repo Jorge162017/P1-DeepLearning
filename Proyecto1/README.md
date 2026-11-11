@@ -6,7 +6,17 @@ Investigamos si el orden de las transacciones trae información que las variable
 agregadas no tienen, y cuánto vale eso en quetzales. Los datos son sintéticos, con
 generador propio (Ruta A).
 
-## Cómo nos fue
+## Proyecto Final: reentrenamiento causal
+
+La continuación del final usa `artefactos/causal_v2/`. La comparación corregida,
+los controles y las conclusiones están en [docs/VALIDACION_CAUSAL.md](docs/VALIDACION_CAUSAL.md).
+Los resultados, PDFs, figuras y notebook originales se conservan como antecedente.
+La tabla de abajo corresponde al **Proyecto 1 original**, no a la ejecución causal.
+
+El cargador reutilizable de B en CPU y sus instrucciones están en
+[docs/SIGUIENTE_PASO_CPU.md](docs/SIGUIENTE_PASO_CPU.md).
+
+## Cómo nos fue en el Proyecto 1 original
 
 | | AUC-PR validación | AUC-PR prueba | P1 historia barajada | P2 orden destruido |
 |---|---|---|---|---|
@@ -39,7 +49,8 @@ Las pruebas, incluida la que verifica que el señuelo sirve:
 uv run pytest -q
 ```
 
-El experimento completo, que regenera los artefactos y las figuras:
+El notebook original (sus salidas guardadas son históricas). Para el final usar
+el comando de reentrenamiento causal documentado al final de este README:
 
 ```bash
 uv run jupyter nbconvert --to notebook --execute --inplace proyecto1_herrarte_lopez.ipynb
@@ -235,9 +246,60 @@ La ciudad base es ahora la moda de las 19 transacciones previas al ancla
 la ventana se calcula respecto a esa base. Esto permite reproducir exactamente
 la última ventana sin acceder a transacciones futuras ni a historia adicional.
 
-**Pendiente antes de producción:** los pesos, escaladores, métricas, figuras y
-umbrales incluidos arriba pertenecen a la preparación original, que calculaba
-la ciudad base con la historia completa. Hay que regenerarlos y validar de nuevo;
-no deben presentarse como resultados del flujo causal corregido. Las pruebas de
-paridad de características no certifican los puntajes de esos pesos anteriores.
-El reparto completo está en `../DISTRIBUCION_PROYECTO_FINAL.md`.
+Los pesos, escaladores, métricas, figuras y umbrales directamente en `artefactos/`
+y los resultados anteriores de este README son históricos: la ciudad base se
+calculaba con la historia completa. Para continuar con la preparación corregida,
+usar el bundle `artefactos/causal_v2/`, nunca mezclar sus pesos y escaladores con
+los originales. El reparto completo está en `../DISTRIBUCION_PROYECTO_FINAL.md`.
+
+### Reproducir la ejecución causal
+
+Entorno utilizado: Python 3.13.12 en CPU. Desde `Proyecto1/`:
+
+```bash
+python3.13 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements-reentrenamiento.txt
+OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4 python -m src.reentrenar --hilos 4
+python -m pytest -q
+```
+
+El entrenamiento conserva 6,000 tarjetas, 180 días, semilla 42 y 12 épocas;
+selecciona la mejor época con validación y mantiene el criterio original de C.
+El script guarda pesos, escaladores, vocabularios, umbrales, métricas JSON,
+puntajes NPZ, resultados, cinco figuras y metadatos con versiones y SHA-256.
+También recarga B en CPU para comprobar la exportación con casos sintéticos.
+
+El bundle ya se incluye en el repositorio: para probarlo no hace falta reentrenar.
+El script rechaza sobrescribir `artefactos/causal_v2/`; si se quiere repetir,
+conservar esa carpeta fuera del destino antes de correrlo. No ejecutar el notebook
+original para actualizar el final: escribe en las rutas de los artefactos históricos.
+La reproducción numérica se refiere al mismo entorno, semilla y configuración;
+no se garantiza identidad de bits entre plataformas o versiones distintas.
+
+El informe declara que prueba ya se usó en Proyecto 1: esta ejecución corrige
+la preparación y reevalúa, sin convertir ese conjunto en una prueba inédita.
+
+### Uso de IA en la continuación del final
+
+Se utilizó Codex (OpenAI) para corregir la preparación causal, organizar el plan,
+implementar el comando de reentrenamiento, ejecutar los modelos y las pruebas,
+exportar artefactos y preparar documentación. Las comprobaciones automatizadas
+se registran con los resultados; ambos integrantes deben revisar y poder explicar
+el código, las métricas y las decisiones antes de presentar.
+
+### Usar B en CPU sin reentrenar
+
+Crear `PredictorFraudeCPU()` una vez y reutilizar `predecir(transacciones)`.
+La salida contiene `puntaje_riesgo` y `version_modelo`; `umbral_sugerido`
+está disponible por separado. Valida integridad y compatibilidad de los archivos
+al cargar y ejecuta en modo evaluación sin gradientes.
+
+```bash
+python -m src.inferencia --entrada ejemplos/solicitud_riesgo.json
+OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4 python -m src.medir_latencia --hilos 4
+```
+
+Ver [guía del cargador](docs/SIGUIENTE_PASO_CPU.md) y
+[mediciones de latencia](docs/LATENCIA_CPU.md). La API HTTP se implementará
+a continuación; el uso por consola ya permite verificar la inferencia local.
