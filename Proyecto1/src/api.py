@@ -1,4 +1,4 @@
-"""API local de riesgo: python -m uvicorn src.api:app --host 127.0.0.1 --port 8000."""
+"""API de riesgo e interfaz web: python -m uvicorn src.api:app --host 127.0.0.1 --port 8000."""
 from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 import json
@@ -12,6 +12,7 @@ from uuid import uuid4
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, ConfigDict, Field, StringConstraints
 import torch
 
@@ -19,6 +20,7 @@ from src.config import K
 from src.inferencia import BUNDLE_PREDETERMINADO, PredictorFraudeCPU
 
 logger = logging.getLogger('uvicorn.error')
+CARPETA_WEB = Path(__file__).resolve().parents[1] / 'web'
 Texto = Annotated[str, StringConstraints(min_length=1, pattern=r'\S')]
 
 
@@ -116,6 +118,11 @@ def crear_app(ruta_bundle=None, hilos=None):
         except RuntimeError:
             logger.error('Fallo de inferencia del modelo B')
             raise HTTPException(status_code=500, detail='No se pudo calcular el puntaje') from None
+
+    # Interfaz de demostracion en el mismo origen: sin CORS y con un solo enlace.
+    # Se monta al final para que /health, /predict y /docs tengan prioridad.
+    if CARPETA_WEB.is_dir():
+        aplicacion.mount('/', StaticFiles(directory=CARPETA_WEB, html=True), name='web')
 
     return aplicacion
 
