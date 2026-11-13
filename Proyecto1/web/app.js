@@ -124,7 +124,8 @@ function pintarEjemplos(ejemplos) {
     const etiqueta = ej.tipo === 'fraude' ? 'Fraude sintético' : 'Legítima sintética';
     b.innerHTML = `<span class="ejemplo__etiqueta ejemplo__etiqueta--${ej.tipo}"></span>
       <span class="ejemplo__titulo"></span><span class="ejemplo__desc"></span>`;
-    b.querySelector('.ejemplo__etiqueta').textContent = `${etiqueta} · ${ej.transacciones.length} eventos`;
+    const n = ej.transacciones.length;
+    b.querySelector('.ejemplo__etiqueta').textContent = `${etiqueta} · ${n} ${n === 1 ? 'evento' : 'eventos'}`;
     b.querySelector('.ejemplo__titulo').textContent = ej.nombre;
     b.querySelector('.ejemplo__desc').textContent = ej.descripcion;
     b.addEventListener('click', () => {
