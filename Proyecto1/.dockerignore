@@ -1,0 +1,13 @@
+.venv/
+**/__pycache__/
+.pytest_cache/
+.ipynb_checkpoints/
+*.ipynb
+*.pdf
+docs/
+figuras/
+tests/
+evidencias/
+artefactos/*.pkl
+artefactos/*.pt
+artefactos/*.npz

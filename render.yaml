@@ -1,0 +1,18 @@
+# Blueprint de Render: un Web Service Docker que sirve la API y la interfaz.
+# Revisar el plan antes de aplicarlo: "free" tiene 512 MB y se suspende tras
+# 15 minutos sin trafico. En Docker linux/amd64 local el proceso uso ~356 MiB.
+services:
+  - type: web
+    name: riesgo-transaccional
+    runtime: docker
+    rootDir: Proyecto1
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: free
+    region: oregon
+    branch: main
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: RIESGO_HILOS
+        value: "1"
