@@ -1,6 +1,6 @@
 // Genera presentacion_final.pptx (exportar luego a PDF con LibreOffice o PowerPoint).
 // Uso, desde la raiz del repositorio:
-//   URL_SERVICIO=https://... node presentacion/generar_presentacion.js
+//   URL_SERVICIO=https://riesgo-transaccional.onrender.com node presentacion/generar_presentacion.js
 // Requiere pptxgenjs (npm install pptxgenjs). Cifras: README raiz y
 // Proyecto1/artefactos/causal_v2/resumen_metricas.json (resultados causales).
 const path = require('path');
@@ -409,7 +409,7 @@ const stats = render
   ? [['6/6', 'casos idénticos en Render (tolerancia 1e-6)', K.verde],
      [`${Math.round(render.latencia_cliente_ms.mediana)} ms`, 'mediana de latencia desde el cliente', K.tinta],
      ['140', 'pruebas automáticas aprobadas', K.tinta],
-     ['356 MiB', 'RAM del contenedor; plan de 512 MB', K.tinta]]
+     ['356 MiB', 'RAM en Docker local; plan de 512 MB', K.tinta]]
   : [['6/6', 'casos idénticos en Linux (tolerancia 1e-6)', K.verde],
      ['140', 'pruebas automáticas aprobadas', K.tinta],
      ['356 MiB', 'RAM del contenedor; plan de 512 MB', K.tinta],
