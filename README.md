@@ -287,7 +287,7 @@ Las métricas completas, desglose por mecanismo, figuras y limitaciones están e
 | Pruebas y monitoreo | pytest y TestClient, verificador de despliegue, registros JSON y `/health` |
 
 ```mermaid
-flowchart LR
+flowchart TB
   subgraph OFF["Fuera de línea: una vez, en la computadora del equipo"]
     D["Generador sintético<br/>6,000 tarjetas, 180 días"] --> P["Preparación causal<br/>ventanas de 20 eventos"]
     P --> T["Entrenamiento A, B, C<br/>umbral en validación"]
