@@ -4,11 +4,14 @@ Deep Learning y Sistemas Inteligentes, Universidad del Valle, 2026.
 Modelo de origen: **Proyecto 1, monitoreo transaccional**.
 
 El proyecto convierte una GRU que evalúa secuencias de transacciones en un servicio
-HTTP de puntaje de riesgo con una interfaz web de demostración. **La API y la
-interfaz funcionan y están probadas localmente y en una imagen Docker Linux.**
-La publicación en Render y las evidencias de uso por una persona externa siguen
-pendientes. Este documento organiza las siete secciones del enunciado y las
-instrucciones de ejecución.
+HTTP de puntaje de riesgo con una interfaz web de demostración.
+
+**Servicio público: <https://riesgo-transaccional.onrender.com>**. La interfaz está en `/`,
+la API en `/predict` y `/health` y su documentación en `/docs`. El plan gratuito se
+suspende tras 15 minutos sin uso: la primera visita puede tardar cerca de un minuto.
+
+Este documento organiza las siete secciones del enunciado y las instrucciones de
+ejecución. Presentación: [presentacion_final.pdf](presentacion/presentacion_final.pdf).
 
 Integrantes: **Jorge López** y **Angel Herrarte**.
 
@@ -57,9 +60,10 @@ revisión, ensayo, exposición y respuestas a preguntas son compartidos.
 | Reproducción en entorno limpio | Jorge | 11 nov | 134 pruebas aprobadas en clon aislado |
 | Interfaz web servida por la API | Angel | 13 nov | Implementada; 140 pruebas aprobadas |
 | Imagen Docker y verificación en Linux | Angel | 13 nov | Seis casos dentro de 1e-6 |
-| Configuración de Render, monitoreo y verificador | Angel | 13 nov | Listos; publicación pendiente |
-| Publicación y pruebas desde otro dispositivo | Angel | 14 nov | Pendiente |
-| Todas las diapositivas y PDF final | Angel | 14 nov | Pendiente |
+| Configuración de Render, monitoreo y verificador | Angel | 13 nov | Implementados |
+| Publicación en Render y verificación pública | Angel | 13 nov | Seis casos dentro de 1e-6 en el servicio público |
+| Todas las diapositivas y PDF final | Angel | 13 nov | Completas; ensayo pendiente |
+| Prueba por una persona ajena al equipo | Angel | 14 nov | Pendiente |
 | Revisión conjunta del PR e integración | Ambos | 14 nov | Pendiente |
 | Ensayo oral y revisión final de enlaces | Ambos | 15 nov | Pendiente |
 
@@ -358,15 +362,18 @@ Guías: [API](Proyecto1/docs/API.md), [despliegue y operación](Proyecto1/docs/D
 | Latencia local | Ventana de 20: mediana 1.865 ms y p95 1.974 ms para `predecir`, sin HTTP/red; [medición](Proyecto1/docs/latencia_cpu.json) |
 | Interfaz web | Seis pruebas nuevas en [test_interfaz.py](Proyecto1/tests/test_interfaz.py): página, rutas intactas, ejemplos con puntaje esperado y 422 por campo; suite completa con 140 pruebas |
 | Imagen Docker Linux | `linux/amd64` emulada: `/health`, interfaz, seis casos (diferencia máxima 8.9e-08) y 422; [verificación](evidencias/verificacion_docker_linux_amd64.json), [registros](evidencias/registro_docker_linux_amd64.log) y [memoria](evidencias/memoria_docker_linux_amd64.json) |
-| **Enlace público** | **Pendiente:** URL de Render tras unir el PR a `main` |
-| Verificación del servicio público | Pendiente: `evidencias/verificacion_render.json` con el verificador |
-| Capturas y registros desde otro equipo | Pendiente: capturas y extracto de logs de Render en [evidencias/](evidencias/README.md) |
+| **Enlace público** | **<https://riesgo-transaccional.onrender.com>** (Render, plan Free, Docker, Oregon) |
+| Verificación del servicio público | `/health`, interfaz, seis casos (diferencia máxima 2.98e-08) y 422; latencia desde Guatemala con red: mediana 280 ms, p95 1,275 ms; [informe](evidencias/verificacion_render.json) |
+| Capturas del servicio público | Navegador de escritorio y móvil: [inicio](evidencias/capturas/render_inicio.png), [fraude F3](evidencias/capturas/render_resultado_f3.png), [legítima en móvil](evidencias/capturas/render_movil_legitima.png) y [error 422](evidencias/capturas/render_movil_error_422.png) |
+| Registros de uso en Render | [Extracto de logs](evidencias/registro_render.log): `/predict` tarda 9 a 15 ms en el servidor; los IDs coinciden con las capturas |
+| Prueba por una persona ajena al equipo | Pendiente: agregar captura y fecha en [evidencias/](evidencias/README.md) |
 | Presentación final en PDF | [presentacion_final.pdf](presentacion/presentacion_final.pdf), con su [PowerPoint editable](presentacion/presentacion_final.pptx) y el [generador](presentacion/generar_presentacion.js); 13 diapositivas con notas de quién expone |
 
-La prueba HTTP local y la imagen Docker demuestran la integración del modelo con
-el servicio y la interfaz. Falta publicar en Render y demostrar el uso por una
-persona externa que solicita el enunciado; esta sección se completará con la URL
-real, el informe del verificador y las capturas.
+El servicio público reproduce los puntajes del experimento y registra cada uso sin
+guardar transacciones. Las capturas se tomaron en una sesión de navegador separada
+del equipo de desarrollo. Falta registrar la prueba de una persona ajena al equipo.
+El plan Free no muestra memoria ni CPU en Render; la referencia es la medición del
+contenedor local (~356 MiB).
 
 ## Ejecución desde el repositorio
 

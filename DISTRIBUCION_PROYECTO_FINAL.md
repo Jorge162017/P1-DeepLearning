@@ -86,7 +86,7 @@ revisarlo juntos antes de desarrollar la conexión de la interfaz.
 
 - [x] Elegir hosting que soporte las dependencias de PyTorch y documentar
   configuración, arranque y ubicación de artefactos.
-- [ ] Publicar API e interfaz y comprobar uso desde otro dispositivo o sesión.
+- [x] Publicar API e interfaz y comprobar uso desde otro dispositivo o sesión.
 - [x] Registrar fecha/hora, identificador de petición, versión de modelo,
   duración y resultado/estado de las solicitudes sin guardar datos sensibles.
 - [x] Documentar cómo revisar salud, errores y latencia. Explicar qué harían
@@ -96,27 +96,28 @@ revisarlo juntos antes de desarrollar la conexión de la interfaz.
 
 ### 7. Arquitectura y documentación a cargo del compañero
 
-- [ ] README raíz: planificación con fechas/responsables, herramientas y
+- [x] README raíz: planificación con fechas/responsables, herramientas y
   arquitectura, evidencia de producción e instrucciones de acceso/ejecución.
 - [x] Diagrama: datos → preparación → entrenamiento → artefactos → servicio →
   interfaz, más registros/monitoreo. Aclarar qué ocurre fuera de línea y en línea.
-- [ ] Agregar enlaces reales al servicio, API, evidencias y presentación PDF.
+- [x] Agregar enlaces reales al servicio, API, evidencias y presentación PDF.
 
 Avance del 13 nov (Angel): interfaz en `Proyecto1/web/` servida por la API,
 Docker verificado en Linux, `render.yaml`, verificador y `docs/DESPLIEGUE.md`
-en el PR `companero/interfaz-deploy`. Falta publicar en Render, capturas,
-prueba externa, enlaces finales y la presentación.
+en el PR `companero/interfaz-deploy`. Publicado el 13 nov en
+<https://riesgo-transaccional.onrender.com> y verificado; presentación en
+`presentacion/`. Falta la prueba de una persona ajena al equipo y el ensayo.
 
 ### 8. Presentación completa — Compañero
 
-- [ ] Crear **todas** las diapositivas: problemática, usuario y decisión,
+- [x] Crear **todas** las diapositivas: problemática, usuario y decisión,
   planificación, supuestos, modelo, validación de hipótesis, arquitectura,
   demo, evidencias, operación y limitaciones. Jorge no tiene asignada la
   elaboración de diapositivas.
-- [ ] Usar el README raíz y `Proyecto1/docs/VALIDACION_CAUSAL.md` como fuentes
+- [x] Usar el README raíz y `Proyecto1/docs/VALIDACION_CAUSAL.md` como fuentes
   de las cifras corregidas. Explicar por qué se mantiene B y por qué C no
   cumplió su criterio; no tomar las métricas históricas como resultados actuales.
-- [ ] Ajustar el material a 10 minutos, preparar la demostración y exportar
+- [x] Ajustar el material a 10 minutos, preparar la demostración y exportar
   el PDF final dentro del repositorio, enlazándolo desde el README raíz.
   El PDF de Proyecto 1 es material de partida y no la entrega final.
 - [ ] Compartir el material con Jorge para que ambos puedan revisarlo, ensayar
@@ -212,16 +213,17 @@ y [hardware y suspensión](https://huggingface.co/docs/hub/spaces-gpus).
 
 ### Criterios para dar por terminado el despliegue
 
-- [ ] Elegir proveedor y presupuesto; registrar la configuración real.
-- [ ] Conseguir `/health` público en estado correcto y comprobar los seis casos
+- [x] Elegir proveedor y presupuesto; registrar la configuración real.
+- [x] Conseguir `/health` público en estado correcto y comprobar los seis casos
   guardados contra `casos_inferencia.json` en el hosting, con tolerancia 1e-6.
   Investigar diferencias; no cambiar la tolerancia solo para ocultarlas.
-- [ ] Conectar la interfaz a la API real, probar errores y confirmar CORS si aplica.
-- [ ] Medir RAM, arranque y latencia en el servidor; las cifras locales no
-  describen automáticamente el rendimiento de un plan de hosting.
-- [ ] Probar desde otro dispositivo o sesión y guardar capturas y registros
+- [x] Conectar la interfaz a la API real, probar errores y confirmar CORS si aplica.
+- [x] Medir RAM, arranque y latencia en el servidor; las cifras locales no
+  describen automáticamente el rendimiento de un plan de hosting. (Latencia medida;
+  el plan Free no expone RAM, se usa la medición del contenedor: ~356 MiB.)
+- [x] Probar desde otro dispositivo o sesión y guardar capturas y registros
   de uso sin transacciones sensibles, incluyendo la versión del modelo.
-- [ ] Agregar enlaces reales y evidencia al README y al PDF de presentación.
+- [x] Agregar enlaces reales y evidencia al README y al PDF de presentación.
 
 ## Estado de entrega de la mitad de Jorge
 

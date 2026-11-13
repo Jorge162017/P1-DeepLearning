@@ -55,6 +55,17 @@ Pasos (requieren la cuenta de quien despliega):
    página unos minutos antes o usar un plan de pago.
 3. Esperar a que `/health` responda y ejecutar el verificador contra la URL pública.
 
+### Despliegue realizado (13 nov 2026)
+
+- URL: <https://riesgo-transaccional.onrender.com>.
+- Creado como Blueprint desde el repositorio público, rama `main`, plan Free
+  (512 MB, 0.15 CPU), región Oregon. Render construye la imagen con el Dockerfile.
+- Verificador: `/health` 200, interfaz 200, seis casos dentro de 1e-6 (diferencia
+  máxima 2.98e-08), entrada inválida 422. Latencia desde Guatemala con red:
+  mediana 280 ms, p95 1,275 ms. En el servidor `/predict` tarda 9 a 15 ms.
+- El plan Free no muestra memoria ni CPU; no hubo reinicios por memoria.
+- Evidencias en [`evidencias/`](../../evidencias/README.md).
+
 ## Verificar un despliegue
 
 Desde `Proyecto1/`, sin PyTorch (solo biblioteca estándar):
