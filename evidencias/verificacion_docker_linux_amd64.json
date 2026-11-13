@@ -1,0 +1,99 @@
+{
+  "servicio": "http://127.0.0.1:8001",
+  "fecha_utc": "2026-11-13T15:05:56.024541+00:00",
+  "tolerancia": 1e-06,
+  "comprobaciones": [
+    {
+      "nombre": "health",
+      "ok": true,
+      "estado_http": 200,
+      "respuesta": {
+        "estado": "ok",
+        "dispositivo": "cpu",
+        "version_modelo": "B-causal_v2-259f9467e2d3"
+      },
+      "id_solicitud": "59b344fc6a9347bf9318c40e1f28c326",
+      "ms_primera_llamada": 21.8
+    },
+    {
+      "nombre": "interfaz",
+      "ok": true,
+      "estado_http": 200
+    },
+    {
+      "nombre": "caso_0_legitimo",
+      "ok": true,
+      "estado_http": 200,
+      "esperado": 3.7645240809069946e-05,
+      "obtenido": 3.764531356864609e-05,
+      "diferencia": 7.275957614183426e-11,
+      "id_solicitud": "7b0b8bccf24d4df288cf225bd675fa52",
+      "version": "B-causal_v2-259f9467e2d3"
+    },
+    {
+      "nombre": "caso_76_legitimo",
+      "ok": true,
+      "estado_http": 200,
+      "esperado": 1.7698317478220815e-08,
+      "obtenido": 1.7698317478220815e-08,
+      "diferencia": 0.0,
+      "id_solicitud": "eb895541a20b40f794c3667ebffb7f07",
+      "version": "B-causal_v2-259f9467e2d3"
+    },
+    {
+      "nombre": "caso_6416_F1",
+      "ok": true,
+      "estado_http": 200,
+      "esperado": 0.041290659457445145,
+      "obtenido": 0.04129067063331604,
+      "diferencia": 1.1175870895385742e-08,
+      "id_solicitud": "376fbe74f4c24e26a4a43b02a45437fe",
+      "version": "B-causal_v2-259f9467e2d3"
+    },
+    {
+      "nombre": "caso_1405_F2",
+      "ok": true,
+      "estado_http": 200,
+      "esperado": 0.9748657941818237,
+      "obtenido": 0.9748657941818237,
+      "diferencia": 0.0,
+      "id_solicitud": "e18b4b4dbca74936a438c6c9d75c6bd2",
+      "version": "B-causal_v2-259f9467e2d3"
+    },
+    {
+      "nombre": "caso_20511_F3",
+      "ok": true,
+      "estado_http": 200,
+      "esperado": 0.9998296499252319,
+      "obtenido": 0.9998296499252319,
+      "diferencia": 0.0,
+      "id_solicitud": "bb90a890b0d64b418175f1e2c332dedb",
+      "version": "B-causal_v2-259f9467e2d3"
+    },
+    {
+      "nombre": "caso_52423_senuelo_f1",
+      "ok": true,
+      "estado_http": 200,
+      "esperado": 0.4271082580089569,
+      "obtenido": 0.4271083474159241,
+      "diferencia": 8.940696716308594e-08,
+      "id_solicitud": "33e759d0ca694484966cced40ca672f3",
+      "version": "B-causal_v2-259f9467e2d3"
+    },
+    {
+      "nombre": "entrada_invalida_422",
+      "ok": true,
+      "estado_http": 422,
+      "id_solicitud": "705b21b88f5946a28e23233e650e2223"
+    }
+  ],
+  "version_modelo": "B-causal_v2-259f9467e2d3",
+  "latencia_cliente_ms": {
+    "n": 20,
+    "mediana": 7.3,
+    "p95": 17.4,
+    "max": 19.1,
+    "nota": "Incluye red entre el cliente y el servidor"
+  },
+  "todo_ok": true
+}

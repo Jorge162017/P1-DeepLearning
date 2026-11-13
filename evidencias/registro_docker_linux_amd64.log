@@ -1,0 +1,66 @@
+INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     {"evento": "solicitud_http", "id_solicitud": "e86af852ca494d04acb2e14917d316a9", "fecha_utc": "2026-11-13T15:05:51.750114+00:00", "metodo": "GET", "ruta": "/health", "estado_http": 200, "duracion_ms": 5.557, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     172.217.165.206:61974 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42570 - "GET /health HTTP/1.1" 200 OK
+INFO:     {"evento": "solicitud_http", "id_solicitud": "327bd63ea9d84ae8ab031f7bb736b0aa", "fecha_utc": "2026-11-13T15:05:53.034964+00:00", "metodo": "GET", "ruta": "/health", "estado_http": 200, "duracion_ms": 2.227, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     {"evento": "solicitud_http", "id_solicitud": "59b344fc6a9347bf9318c40e1f28c326", "fecha_utc": "2026-11-13T15:05:56.043664+00:00", "metodo": "GET", "ruta": "/health", "estado_http": 200, "duracion_ms": 3.087, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     172.217.165.206:40457 - "GET /health HTTP/1.1" 200 OK
+INFO:     {"evento": "solicitud_http", "id_solicitud": "4ea2a9feda4f4edc97a94d6344b4276a", "fecha_utc": "2026-11-13T15:05:56.058416+00:00", "metodo": "GET", "ruta": "/", "estado_http": 200, "duracion_ms": 10.292, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     172.217.165.206:43980 - "GET / HTTP/1.1" 200 OK
+INFO:     {"evento": "solicitud_http", "id_solicitud": "7b0b8bccf24d4df288cf225bd675fa52", "fecha_utc": "2026-11-13T15:05:56.169024+00:00", "metodo": "POST", "ruta": "/predict", "estado_http": 200, "duracion_ms": 108.217, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     172.217.165.206:56919 - "POST /predict HTTP/1.1" 200 OK
+INFO:     172.217.165.206:30046 - "POST /predict HTTP/1.1" 200 OK
+INFO:     {"evento": "solicitud_http", "id_solicitud": "eb895541a20b40f794c3667ebffb7f07", "fecha_utc": "2026-11-13T15:05:56.183618+00:00", "metodo": "POST", "ruta": "/predict", "estado_http": 200, "duracion_ms": 11.794, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     {"evento": "solicitud_http", "id_solicitud": "376fbe74f4c24e26a4a43b02a45437fe", "fecha_utc": "2026-11-13T15:05:56.190582+00:00", "metodo": "POST", "ruta": "/predict", "estado_http": 200, "duracion_ms": 5.338, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     172.217.165.206:25356 - "POST /predict HTTP/1.1" 200 OK
+INFO:     {"evento": "solicitud_http", "id_solicitud": "e18b4b4dbca74936a438c6c9d75c6bd2", "fecha_utc": "2026-11-13T15:05:56.198658+00:00", "metodo": "POST", "ruta": "/predict", "estado_http": 200, "duracion_ms": 6.04, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     172.217.165.206:18391 - "POST /predict HTTP/1.1" 200 OK
+INFO:     {"evento": "solicitud_http", "id_solicitud": "bb90a890b0d64b418175f1e2c332dedb", "fecha_utc": "2026-11-13T15:05:56.205915+00:00", "metodo": "POST", "ruta": "/predict", "estado_http": 200, "duracion_ms": 5.734, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     172.217.165.206:25794 - "POST /predict HTTP/1.1" 200 OK
+INFO:     {"evento": "solicitud_http", "id_solicitud": "33e759d0ca694484966cced40ca672f3", "fecha_utc": "2026-11-13T15:05:56.212570+00:00", "metodo": "POST", "ruta": "/predict", "estado_http": 200, "duracion_ms": 5.128, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     172.217.165.206:36917 - "POST /predict HTTP/1.1" 200 OK
+INFO:     {"evento": "solicitud_http", "id_solicitud": "705b21b88f5946a28e23233e650e2223", "fecha_utc": "2026-11-13T15:05:56.216673+00:00", "metodo": "POST", "ruta": "/predict", "estado_http": 422, "duracion_ms": 1.964, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     172.217.165.206:65161 - "POST /predict HTTP/1.1" 422 Unprocessable Content
+INFO:     {"evento": "solicitud_http", "id_solicitud": "8dd36c7b1c4f4d2ba354e6f988767edb", "fecha_utc": "2026-11-13T15:05:56.224368+00:00", "metodo": "POST", "ruta": "/predict", "estado_http": 200, "duracion_ms": 6.292, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     172.217.165.206:33367 - "POST /predict HTTP/1.1" 200 OK
+INFO:     {"evento": "solicitud_http", "id_solicitud": "fb34268a713748afa0737c8657fdf9d8", "fecha_utc": "2026-11-13T15:05:56.232167+00:00", "metodo": "POST", "ruta": "/predict", "estado_http": 200, "duracion_ms": 6.236, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     172.217.165.206:59370 - "POST /predict HTTP/1.1" 200 OK
+INFO:     {"evento": "solicitud_http", "id_solicitud": "038a5c86204d4578a4f9b62d3cfe00fd", "fecha_utc": "2026-11-13T15:05:56.239517+00:00", "metodo": "POST", "ruta": "/predict", "estado_http": 200, "duracion_ms": 5.327, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     172.217.165.206:22195 - "POST /predict HTTP/1.1" 200 OK
+INFO:     {"evento": "solicitud_http", "id_solicitud": "1ca36a8b77e94e9f8293e999d595c32d", "fecha_utc": "2026-11-13T15:05:56.246303+00:00", "metodo": "POST", "ruta": "/predict", "estado_http": 200, "duracion_ms": 4.909, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     172.217.165.206:22061 - "POST /predict HTTP/1.1" 200 OK
+INFO:     {"evento": "solicitud_http", "id_solicitud": "5d469d536c6f40c787cbf0aaa6d6616a", "fecha_utc": "2026-11-13T15:05:56.265171+00:00", "metodo": "POST", "ruta": "/predict", "estado_http": 200, "duracion_ms": 15.526, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     172.217.165.206:27143 - "POST /predict HTTP/1.1" 200 OK
+INFO:     {"evento": "solicitud_http", "id_solicitud": "280c4a94246d47c5875d3ac053ade9b5", "fecha_utc": "2026-11-13T15:05:56.275873+00:00", "metodo": "POST", "ruta": "/predict", "estado_http": 200, "duracion_ms": 6.058, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     172.217.165.206:45394 - "POST /predict HTTP/1.1" 200 OK
+INFO:     {"evento": "solicitud_http", "id_solicitud": "865b12c9bb4949f1a3b2b8df585cc81f", "fecha_utc": "2026-11-13T15:05:56.292724+00:00", "metodo": "POST", "ruta": "/predict", "estado_http": 200, "duracion_ms": 14.332, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     172.217.165.206:51731 - "POST /predict HTTP/1.1" 200 OK
+INFO:     {"evento": "solicitud_http", "id_solicitud": "ee80731b60c6407fbd121925f77b047c", "fecha_utc": "2026-11-13T15:05:56.308938+00:00", "metodo": "POST", "ruta": "/predict", "estado_http": 200, "duracion_ms": 13.225, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     172.217.165.206:20634 - "POST /predict HTTP/1.1" 200 OK
+INFO:     172.217.165.206:39561 - "POST /predict HTTP/1.1" 200 OK
+INFO:     {"evento": "solicitud_http", "id_solicitud": "068af065ef89482f8d5ddc17d7ccb0f1", "fecha_utc": "2026-11-13T15:05:56.318463+00:00", "metodo": "POST", "ruta": "/predict", "estado_http": 200, "duracion_ms": 6.732, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     172.217.165.206:19872 - "POST /predict HTTP/1.1" 200 OK
+INFO:     {"evento": "solicitud_http", "id_solicitud": "a84210e5ee874d3294740d6470fb0bc6", "fecha_utc": "2026-11-13T15:05:56.327583+00:00", "metodo": "POST", "ruta": "/predict", "estado_http": 200, "duracion_ms": 7.676, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     {"evento": "solicitud_http", "id_solicitud": "492cfa1862534b6dbd4f240660dd6b0a", "fecha_utc": "2026-11-13T15:05:56.334571+00:00", "metodo": "POST", "ruta": "/predict", "estado_http": 200, "duracion_ms": 4.861, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     172.217.165.206:64874 - "POST /predict HTTP/1.1" 200 OK
+INFO:     {"evento": "solicitud_http", "id_solicitud": "de2c94357d1842d2bf67b8e7abb117a5", "fecha_utc": "2026-11-13T15:05:56.339766+00:00", "metodo": "POST", "ruta": "/predict", "estado_http": 200, "duracion_ms": 3.93, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     172.217.165.206:49225 - "POST /predict HTTP/1.1" 200 OK
+INFO:     172.217.165.206:34080 - "POST /predict HTTP/1.1" 200 OK
+INFO:     {"evento": "solicitud_http", "id_solicitud": "7438509a4ad4438eb5c2a6b90c00a848", "fecha_utc": "2026-11-13T15:05:56.345833+00:00", "metodo": "POST", "ruta": "/predict", "estado_http": 200, "duracion_ms": 4.896, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     {"evento": "solicitud_http", "id_solicitud": "8b9d041bb4bc4b26917f798b25d48a18", "fecha_utc": "2026-11-13T15:05:56.351875+00:00", "metodo": "POST", "ruta": "/predict", "estado_http": 200, "duracion_ms": 4.772, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     172.217.165.206:25213 - "POST /predict HTTP/1.1" 200 OK
+INFO:     {"evento": "solicitud_http", "id_solicitud": "9c1f030fcbf444a8afd13aefc51b74d2", "fecha_utc": "2026-11-13T15:05:56.357629+00:00", "metodo": "POST", "ruta": "/predict", "estado_http": 200, "duracion_ms": 4.432, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     172.217.165.206:30705 - "POST /predict HTTP/1.1" 200 OK
+INFO:     172.217.165.206:43263 - "POST /predict HTTP/1.1" 200 OK
+INFO:     {"evento": "solicitud_http", "id_solicitud": "905b12b605d649529ddc03caf73db46c", "fecha_utc": "2026-11-13T15:05:56.365101+00:00", "metodo": "POST", "ruta": "/predict", "estado_http": 200, "duracion_ms": 6.163, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     {"evento": "solicitud_http", "id_solicitud": "d447dad9b0bb47a2b534e73ef42d6062", "fecha_utc": "2026-11-13T15:05:56.372711+00:00", "metodo": "POST", "ruta": "/predict", "estado_http": 200, "duracion_ms": 5.352, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     172.217.165.206:64893 - "POST /predict HTTP/1.1" 200 OK
+INFO:     172.217.165.206:18024 - "POST /predict HTTP/1.1" 200 OK
+INFO:     {"evento": "solicitud_http", "id_solicitud": "08f010970fba4a729dc451f88465910e", "fecha_utc": "2026-11-13T15:05:56.379869+00:00", "metodo": "POST", "ruta": "/predict", "estado_http": 200, "duracion_ms": 5.771, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     {"evento": "solicitud_http", "id_solicitud": "cd040130a4204a0f9c263e3f411c9ef8", "fecha_utc": "2026-11-13T15:05:56.386692+00:00", "metodo": "POST", "ruta": "/predict", "estado_http": 200, "duracion_ms": 5.32, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     172.217.165.206:51434 - "POST /predict HTTP/1.1" 200 OK
+INFO:     {"evento": "solicitud_http", "id_solicitud": "e2982d0d9ef545aeadf9b630ac14afe0", "fecha_utc": "2026-11-13T15:05:56.392986+00:00", "metodo": "POST", "ruta": "/predict", "estado_http": 200, "duracion_ms": 4.983, "version_modelo": "B-causal_v2-259f9467e2d3"}
+INFO:     172.217.165.206:57286 - "POST /predict HTTP/1.1" 200 OK

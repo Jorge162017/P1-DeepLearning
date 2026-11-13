@@ -4,10 +4,13 @@ Deep Learning y Sistemas Inteligentes, Universidad del Valle, 2026.
 Modelo de origen: **Proyecto 1, monitoreo transaccional**.
 
 El proyecto convierte una GRU que evalúa secuencias de transacciones en un servicio
-HTTP de puntaje de riesgo. **La API funciona y está probada localmente.** La
-interfaz, el despliegue público y las evidencias de uso por una persona externa
-siguen pendientes. Este documento organiza las siete secciones del enunciado y
-las instrucciones de ejecución.
+HTTP de puntaje de riesgo con una interfaz web de demostración. **La API y la
+interfaz funcionan y están probadas localmente y en una imagen Docker Linux.**
+La publicación en Render y las evidencias de uso por una persona externa siguen
+pendientes. Este documento organiza las siete secciones del enunciado y las
+instrucciones de ejecución.
+
+Integrantes: **Jorge López** y **Angel Herrarte**.
 
 La implementación y los artefactos están en [Proyecto1/](Proyecto1/). La ejecución
 vigente usa exclusivamente [artefactos/causal_v2/](Proyecto1/artefactos/causal_v2/).
@@ -39,31 +42,33 @@ servicio utilizable y justificar su modelo, contrato y límites.
 
 ## 2. Planificación
 
-El trabajo se distribuye en pareja. Jorge López está a cargo de preparación,
-modelos, inferencia, API y sus secciones técnicas. El compañero está a cargo de
-interfaz, despliegue, arquitectura de la solución y evidencias de uso externo.
-El compañero también elabora **todas las diapositivas y el PDF final**.
-La integración, revisión, ensayo, exposición y respuestas a preguntas son compartidos. El nombre del segundo
-integrante debe completarse antes de la entrega.
+El trabajo se distribuye en pareja. **Jorge López** está a cargo de preparación,
+modelos, inferencia, API y sus secciones técnicas. **Angel Herrarte** está a cargo
+de interfaz, despliegue, arquitectura de la solución, evidencias de uso externo
+y la elaboración de **todas las diapositivas y el PDF final**. La integración,
+revisión, ensayo, exposición y respuestas a preguntas son compartidos.
 
-| Etapa | Responsable | Estado |
-|---|---|---|
-| Preparación causal y pruebas sin información futura | Jorge | Implementada |
-| Reentrenamiento y validación de A, B y C | Jorge | Ejecutados; artefactos y métricas guardados |
-| Cargador de B en CPU y medición local | Jorge | Implementado y verificado |
-| API de predicción y salud | Jorge | Implementada y probada localmente |
-| Interfaz, despliegue y evidencias externas | Compañero | Pendientes |
-| Reproducción en entorno limpio | Jorge / ambos | Verificada en clon local y entorno aislado; 134 pruebas aprobadas |
-| Revisión conjunta | Ambos | Pendiente |
-| Todas las diapositivas y PDF final | Compañero | Pendientes |
-| Revisión del material y ensayo oral | Ambos | Pendientes |
+| Etapa | Responsable | Fecha | Estado |
+|---|---|---|---|
+| Reorganización y preparación causal sin información futura | Jorge | 11 nov | Implementada y probada |
+| Reentrenamiento y validación de A, B y C | Jorge | 11 nov | Artefactos y métricas guardados |
+| Cargador de B en CPU y latencia local | Jorge | 11 nov | Implementado y verificado |
+| API de predicción y salud | Jorge | 11 nov | Implementada y probada localmente |
+| Reproducción en entorno limpio | Jorge | 11 nov | 134 pruebas aprobadas en clon aislado |
+| Interfaz web servida por la API | Angel | 13 nov | Implementada; 140 pruebas aprobadas |
+| Imagen Docker y verificación en Linux | Angel | 13 nov | Seis casos dentro de 1e-6 |
+| Configuración de Render, monitoreo y verificador | Angel | 13 nov | Listos; publicación pendiente |
+| Publicación y pruebas desde otro dispositivo | Angel | 14 nov | Pendiente |
+| Todas las diapositivas y PDF final | Angel | 14 nov | Pendiente |
+| Revisión conjunta del PR e integración | Ambos | 14 nov | Pendiente |
+| Ensayo oral y revisión final de enlaces | Ambos | 15 nov | Pendiente |
 
 El [plan de trabajo](DISTRIBUCION_PROYECTO_FINAL.md) contiene las tareas y el
 calendario propuesto del 11 al 15 de noviembre. Las fechas de presentación del
 enunciado son 9 y 13 de noviembre; la entrega límite es el **15 de noviembre de
-2026 a las 23:59**. El compañero debe completar esta sección con su nombre,
-fechas reales de integración y despliegue y cualquier ajuste al calendario.
-Las opciones de hosting están en el [reparto de trabajo](DISTRIBUCION_PROYECTO_FINAL.md#dónde-desplegar--decisión-e-implementación-del-compañero).
+2026 a las 23:59**. La interfaz y la configuración de despliegue, planificadas
+para el 11 y 12 de noviembre, se completaron el 13; el resto del calendario se
+mantiene. Confirmar con el docente la modalidad en pareja y la fecha de exposición.
 
 ## 3. Supuestos y límites
 
@@ -272,9 +277,40 @@ Las métricas completas, desglose por mecanismo, figuras y limitaciones están e
 
 ## 6. Herramientas y arquitectura del servicio
 
-La implementación actual usa Python, NumPy y pandas para preparación,
-scikit-learn para A y métricas, PyTorch para B/C, FastAPI para HTTP, Uvicorn
-para servir la aplicación y pytest con TestClient para las pruebas.
+| Capa | Herramientas |
+|---|---|
+| Datos y preparación | Python 3.13, NumPy, pandas (generador sintético y ventanas causales) |
+| Entrenamiento y evaluación | PyTorch 2.13 (B y C), scikit-learn (A y métricas), matplotlib |
+| Servicio | FastAPI, Pydantic, Uvicorn; PyTorch solo CPU |
+| Interfaz | HTML, CSS y JavaScript sin dependencias, servidos por la misma API |
+| Empaquetado y hosting | Docker (`python:3.13.12-slim`), Render Web Service con `render.yaml` |
+| Pruebas y monitoreo | pytest y TestClient, verificador de despliegue, registros JSON y `/health` |
+
+```mermaid
+flowchart TB
+  subgraph OFF["Fuera de línea: una vez, en la computadora del equipo"]
+    D["Generador sintético<br/>6,000 tarjetas, 180 días"] --> P["Preparación causal<br/>ventanas de 20 eventos"]
+    P --> T["Entrenamiento A, B, C<br/>umbral en validación"]
+    T --> V["Validación y paridad CPU<br/>prueba congelada"]
+    V --> AR[("artefactos/causal_v2<br/>pesos, escaladores,<br/>vocabularios, metadatos")]
+  end
+  subgraph ON["En línea: contenedor Docker en Render"]
+    AR -- "copiados a la imagen" --> C["Cargador B en CPU<br/>verifica huellas y versión"]
+    C --> API["FastAPI<br/>POST /predict, GET /health"]
+    API --> W["Interfaz web en /"]
+    API --> L["Registros JSON por solicitud<br/>sin datos de transacciones"]
+  end
+  U["Analista o persona externa"] -- "navegador" --> W
+  W -- "fetch mismo origen" --> API
+  H["Health check de Render"] --> API
+  L --> M["Logs de Render<br/>errores, latencia, versión"]
+  VD["verificar_despliegue.py"] -- "6 casos, tolerancia 1e-6" --> API
+```
+
+**Fuera de línea** ocurre todo lo que produce el modelo: generar datos, preparar
+ventanas, entrenar, elegir umbral y exportar. **En línea** solo se carga lo ya
+exportado; el servicio nunca entrena ni modifica artefactos. Si un artefacto falta
+o no coincide con sus huellas, el proceso no arranca.
 
 El entrenamiento ocurre fuera del servicio: genera datos, prepara ventanas,
 valida modelos y exporta artefactos. Al iniciar la API, el cargador verifica
@@ -286,12 +322,30 @@ prepara una ventana con la misma lógica y devuelve puntaje y versión.
 Los registros JSON incluyen fecha UTC, identificador de solicitud, método,
 ruta, estado HTTP, duración y versión, sin guardar las transacciones.
 
-Guías: [API](Proyecto1/docs/API.md), [cargador CPU](Proyecto1/docs/SIGUIENTE_PASO_CPU.md)
-y [latencia local](Proyecto1/docs/LATENCIA_CPU.md).
+La interfaz ([Proyecto1/web/](Proyecto1/web/)) se sirve en `/` desde el mismo
+proceso, por lo que no requiere CORS ni un segundo despliegue. Ofrece seis ejemplos
+sintéticos tomados de los casos guardados, edición de la ventana, carga de JSON,
+estados de carga y errores marcados por fila y campo. Muestra el puntaje junto al
+umbral de referencia de validación, aclarando que no es una probabilidad calibrada
+ni una decisión automática.
 
-**Por completar por el compañero:** diagrama de la arquitectura final con
-interfaz, hosting y monitoreo; herramientas de despliegue y cómo se revisarán
-salud, errores, latencia y deriva en el entorno publicado.
+**Despliegue.** [Dockerfile](Proyecto1/Dockerfile) instala `torch==2.13.0` desde
+el índice de CPU de PyTorch y copia solo código, `causal_v2` e interfaz.
+[render.yaml](render.yaml) crea un Web Service Docker con `healthCheckPath: /health`
+y `RIESGO_HILOS=1`. En Linux amd64 (emulado) la imagen ocupa 431 MB y el proceso
+unos 356 MiB de RAM; el plan gratuito de Render tiene 512 MB y se suspende tras
+15 minutos sin tráfico.
+
+**Monitoreo implementado:** `/health`, health check de Render, registros JSON con
+fecha, identificador, ruta, estado, duración y versión, y `X-Request-ID` visible en
+la interfaz para cruzar un resultado con su registro.
+**Propuesto, no implementado:** agregados diarios anónimos de entradas con PSI para
+detectar deriva, recálculo mensual de métricas con contracargos y alertas por
+tasa de 5xx o latencia. Criterios de recalibración y reentrenamiento en
+[DESPLIEGUE.md](Proyecto1/docs/DESPLIEGUE.md#registros-y-monitoreo).
+
+Guías: [API](Proyecto1/docs/API.md), [despliegue y operación](Proyecto1/docs/DESPLIEGUE.md),
+[cargador CPU](Proyecto1/docs/SIGUIENTE_PASO_CPU.md) y [latencia local](Proyecto1/docs/LATENCIA_CPU.md).
 
 ## 7. Evidencias del pase a producción
 
@@ -302,13 +356,17 @@ salud, errores, latencia y deriva en el entorno publicado.
 | Predicción real por HTTP local | Uvicorn: `/health` y `/predict`; [resultado](Proyecto1/docs/prueba_api_local.json) y [registros](Proyecto1/docs/registro_api_local.log) |
 | Paridad de exportación de B | Seis casos, error máximo 5.96e-08 con tolerancia 1e-6; [verificación](Proyecto1/artefactos/causal_v2/verificacion_cpu.json) |
 | Latencia local | Ventana de 20: mediana 1.865 ms y p95 1.974 ms para `predecir`, sin HTTP/red; [medición](Proyecto1/docs/latencia_cpu.json) |
-| Interfaz y enlace público | Pendientes del compañero |
-| Capturas y registros desde otro equipo | Pendientes del compañero |
-| Presentación final en PDF | Elaboración completa a cargo del compañero; revisión y ensayo de ambos. El PDF de Proyecto 1 es antecedente |
+| Interfaz web | Seis pruebas nuevas en [test_interfaz.py](Proyecto1/tests/test_interfaz.py): página, rutas intactas, ejemplos con puntaje esperado y 422 por campo; suite completa con 140 pruebas |
+| Imagen Docker Linux | `linux/amd64` emulada: `/health`, interfaz, seis casos (diferencia máxima 8.9e-08) y 422; [verificación](evidencias/verificacion_docker_linux_amd64.json), [registros](evidencias/registro_docker_linux_amd64.log) y [memoria](evidencias/memoria_docker_linux_amd64.json) |
+| **Enlace público** | **Pendiente:** URL de Render tras unir el PR a `main` |
+| Verificación del servicio público | Pendiente: `evidencias/verificacion_render.json` con el verificador |
+| Capturas y registros desde otro equipo | Pendiente: capturas y extracto de logs de Render en [evidencias/](evidencias/README.md) |
+| Presentación final en PDF | Pendiente (Angel); revisión y ensayo de ambos. El PDF de Proyecto 1 es antecedente |
 
-La prueba HTTP local demuestra integración del modelo con el servicio. Todavía
-falta demostrar el uso externo que solicita el enunciado. Antes de entregar,
-completar esta sección con enlaces reales, capturas y evidencia del despliegue.
+La prueba HTTP local y la imagen Docker demuestran la integración del modelo con
+el servicio y la interfaz. Falta publicar en Render y demostrar el uso por una
+persona externa que solicita el enunciado; esta sección se completará con la URL
+real, el informe del verificador y las capturas.
 
 ## Ejecución desde el repositorio
 
@@ -322,8 +380,9 @@ python -m pip install -r requirements-api.txt
 python -m uvicorn src.api:app --host 127.0.0.1 --port 8000
 ```
 
-Con el servidor activo, abrir `http://127.0.0.1:8000/docs` o ejecutar en otra
-terminal desde `Proyecto1/`:
+Con el servidor activo, abrir la interfaz en `http://127.0.0.1:8000/`, la
+documentación en `http://127.0.0.1:8000/docs` o ejecutar en otra terminal desde
+`Proyecto1/`:
 
 ```bash
 curl http://127.0.0.1:8000/health
@@ -331,6 +390,23 @@ curl -X POST http://127.0.0.1:8000/predict \
   -H 'Content-Type: application/json' \
   --data-binary @ejemplos/solicitud_riesgo.json
 ```
+
+Alternativa con Docker, igual a la que se publica (desde `Proyecto1/`):
+
+```bash
+docker build -t riesgo-api .
+docker run --rm -p 8000:8000 riesgo-api
+```
+
+Para comprobar un servicio publicado contra los seis casos guardados (solo
+biblioteca estándar, sin instalar PyTorch):
+
+```bash
+python3 -m src.verificar_despliegue https://<servicio>.onrender.com --salida ../evidencias/verificacion_render.json
+```
+
+Si cambian los artefactos, regenerar los ejemplos de la interfaz con
+`python -m src.generar_demo`; una prueba falla si quedan desincronizados.
 
 ### Contrato de entrada y salida
 
@@ -377,7 +453,7 @@ esa carpeta fuera del destino antes de repetirlo. No ejecutar el notebook
 original para actualizar el final, porque escribe en las rutas históricas.
 La instalación desde cero se verificó en un clon local independiente y un
 entorno virtual sin paquetes del sistema: 134 pruebas aprobadas y solicitudes
-HTTP reales correctas. Ver [reproducción limpia](Proyecto1/docs/REPRODUCCION_LIMPIA.md).
+HTTP reales correctas, antes de agregar la interfaz (hoy son 140). Ver [reproducción limpia](Proyecto1/docs/REPRODUCCION_LIMPIA.md).
 Esta comprobación local no sustituye la prueba del despliegue público.
 
 ## Uso de inteligencia artificial
@@ -391,6 +467,15 @@ causal, organizar tareas, implementar y ejecutar reentrenamiento, exportación,
 cargador CPU, benchmark, API, pruebas y documentación. Las verificaciones
 registradas incluyen causalidad, paridad con casos guardados, integridad de
 artefactos, métricas recalculadas y solicitudes HTTP reales locales.
+
+En la segunda mitad (Angel Herrarte) se utilizó Claude Code (Anthropic) para
+implementar la interfaz web, el generador de ejemplos, el montaje de la interfaz
+en la API, las pruebas de la interfaz, el Dockerfile, `render.yaml`, el verificador
+de despliegue y la redacción de las secciones 2, 6 y 7 y de `DESPLIEGUE.md`.
+Lo verificado: la suite completa (140 pruebas), la interfaz en navegador (ejemplos,
+errores 422 y vista móvil) y la imagen Docker Linux contra los seis casos guardados.
+Las propuestas de monitoreo de deriva se redactaron como propuesta y no se presentan
+como implementadas.
 
 Ambos integrantes deben revisar y poder explicar el código, las decisiones y
 los resultados. La revisión conjunta y el ensayo de preguntas siguen pendientes;
