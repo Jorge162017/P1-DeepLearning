@@ -74,22 +74,22 @@ revisarlo juntos antes de desarrollar la conexión de la interfaz.
 
 ### 5. Interfaz de demostración
 
-- [ ] Crear una página para ingresar o pegar transacciones, con ejemplos
+- [x] Crear una página para ingresar o pegar transacciones, con ejemplos
   sintéticos legítimos y sospechosos listos para ejecutar.
-- [ ] Mostrar puntaje y explicación de uso, estados de carga y errores de API.
+- [x] Mostrar puntaje y explicación de uso, estados de carga y errores de API.
   No presentar el puntaje como probabilidad calibrada sin comprobarlo.
-- [ ] Conectar con el contrato acordado y probar secuencias cortas y entradas
+- [x] Conectar con el contrato acordado y probar secuencias cortas y entradas
   inválidas. La API real ya está disponible en el repositorio; usarla para
   la integración y para todas las evidencias de la versión publicada.
 
 ### 6. Despliegue, monitoreo y pruebas de uso
 
-- [ ] Elegir hosting que soporte las dependencias de PyTorch y documentar
+- [x] Elegir hosting que soporte las dependencias de PyTorch y documentar
   configuración, arranque y ubicación de artefactos.
 - [ ] Publicar API e interfaz y comprobar uso desde otro dispositivo o sesión.
-- [ ] Registrar fecha/hora, identificador de petición, versión de modelo,
+- [x] Registrar fecha/hora, identificador de petición, versión de modelo,
   duración y resultado/estado de las solicitudes sin guardar datos sensibles.
-- [ ] Documentar cómo revisar salud, errores y latencia. Explicar qué harían
+- [x] Documentar cómo revisar salud, errores y latencia. Explicar qué harían
   ante deriva y cuándo recalibrar/reentrenar; distinguir propuesta e implementación.
 - [ ] Reunir capturas, registros de uso y resultados de pruebas en `evidencias/`.
   Verificar que una persona ajena al equipo pueda completar una predicción.
@@ -98,9 +98,14 @@ revisarlo juntos antes de desarrollar la conexión de la interfaz.
 
 - [ ] README raíz: planificación con fechas/responsables, herramientas y
   arquitectura, evidencia de producción e instrucciones de acceso/ejecución.
-- [ ] Diagrama: datos → preparación → entrenamiento → artefactos → servicio →
+- [x] Diagrama: datos → preparación → entrenamiento → artefactos → servicio →
   interfaz, más registros/monitoreo. Aclarar qué ocurre fuera de línea y en línea.
 - [ ] Agregar enlaces reales al servicio, API, evidencias y presentación PDF.
+
+Avance del 13 nov (Angel): interfaz en `Proyecto1/web/` servida por la API,
+Docker verificado en Linux, `render.yaml`, verificador y `docs/DESPLIEGUE.md`
+en el PR `companero/interfaz-deploy`. Falta publicar en Render, capturas,
+prueba externa, enlaces finales y la presentación.
 
 ### 8. Presentación completa — Compañero
 
