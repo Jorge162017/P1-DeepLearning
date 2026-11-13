@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Riesgo transaccional</title>
+  <meta name="description" content="Demostración del modelo B (GRU) para puntuar riesgo de fraude con datos sintéticos.">
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <header class="cabecera">
+    <div class="contenedor cabecera__fila">
+      <div>
+        <h1>Riesgo transaccional</h1>
+        <p class="subtitulo">Modelo B (GRU) · demostración con datos sintéticos</p>
+      </div>
+      <div id="estado-servicio" class="estado estado--cargando" role="status" aria-live="polite">
+        <span class="estado__punto" aria-hidden="true"></span>
+        <span id="estado-texto">Consultando servicio…</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    <section class="aviso" aria-label="Aviso">
+      <strong>Demostración académica.</strong>
+      Los datos son sintéticos y el puntaje <em>no</em> es una probabilidad calibrada.
+      No es un sistema bancario validado ni bloquea transacciones: el umbral es una
+      política de referencia elegida en validación.
+    </section>
+
+    <section aria-labelledby="titulo-ejemplos">
+      <h2 id="titulo-ejemplos">1. Elegir un ejemplo</h2>
+      <p class="ayuda">Cargan secuencias guardadas del experimento. Puedes editarlas después.</p>
+      <div id="ejemplos" class="ejemplos"></div>
+    </section>
+
+    <section aria-labelledby="titulo-editor">
+      <div class="fila-titulo">
+        <h2 id="titulo-editor">2. Revisar las transacciones</h2>
+        <span id="contador" class="contador"></span>
+      </div>
+      <p class="ayuda">
+        Una sola tarjeta, en orden cronológico, de 1 a 20 eventos. La <strong>última fila</strong>
+        es la transacción que se evalúa; las anteriores son su historia.
+        <code>marca_tiempo</code> está en días desde el origen fijo de la simulación.
+      </p>
+
+      <div class="tabla-envoltura">
+        <table class="tabla" aria-describedby="titulo-editor">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Marca de tiempo (días)</th>
+              <th scope="col">Monto (Q)</th>
+              <th scope="col">Rubro</th>
+              <th scope="col">Canal</th>
+              <th scope="col">Ciudad</th>
+              <th scope="col"><span class="oculto">Quitar</span></th>
+            </tr>
+          </thead>
+          <tbody id="filas"></tbody>
+        </table>
+      </div>
+      <datalist id="lista-rubros"></datalist>
+      <datalist id="lista-canales"></datalist>
+      <datalist id="lista-ciudades"></datalist>
+
+      <div class="acciones">
+        <button type="button" id="agregar" class="boton boton--secundario">Agregar transacción</button>
+        <button type="button" id="limpiar" class="boton boton--secundario">Vaciar</button>
+        <button type="button" id="alternar-json" class="boton boton--secundario" aria-expanded="false" aria-controls="panel-json">Ver / pegar JSON</button>
+      </div>
+
+      <div id="panel-json" class="panel-json" hidden>
+        <label for="texto-json">JSON de la solicitud (<code>{"transacciones": [...]}</code>)</label>
+        <textarea id="texto-json" rows="12" spellcheck="false"></textarea>
+        <div class="acciones">
+          <button type="button" id="aplicar-json" class="boton boton--secundario">Cargar JSON en la tabla</button>
+          <span id="error-json" class="error-linea" role="alert"></span>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="titulo-resultado">
+      <h2 id="titulo-resultado">3. Calcular el puntaje</h2>
+      <button type="button" id="predecir" class="boton boton--primario">
+        <span class="spinner" aria-hidden="true"></span>
+        <span class="boton__texto">Calcular riesgo</span>
+      </button>
+
+      <div id="resultado" class="resultado" aria-live="polite" hidden></div>
+      <div id="errores" class="errores" role="alert" hidden></div>
+    </section>
+
+    <section class="explicacion" aria-labelledby="titulo-explicacion">
+      <h2 id="titulo-explicacion">Cómo leer el resultado</h2>
+      <ul>
+        <li><strong>Puntaje de riesgo (0 a 1):</strong> ordena transacciones de menos a más sospechosas.
+          Un puntaje mayor indica más prioridad de revisión, no un porcentaje de probabilidad.</li>
+        <li><strong>Umbral de referencia (<span id="umbral-texto">—</span>):</strong> elegido en validación
+          minimizando el costo esperado con Q<span id="costo-fn">4,200</span> por fraude no detectado y
+          Q<span id="costo-fp">180</span> por legítima bloqueada. Cada consumidor decide su propia política.</li>
+        <li><strong>Límites:</strong> el modelo no detecta el goteo lento (F4) y puede fallar en fraudes en rampa (F1),
+          como muestra uno de los ejemplos. Categorías desconocidas se aceptan pero el modelo no las conoce.</li>
+        <li><strong>Privacidad:</strong> el servicio registra fecha, identificador, ruta, estado, duración y versión
+          del modelo; no guarda montos, ciudades ni el cuerpo de la solicitud.</li>
+      </ul>
+      <p class="ayuda">Documentación de la API: <a href="docs">/docs</a> · Salud: <a href="health">/health</a></p>
+    </section>
+  </main>
+
+  <footer class="pie contenedor">
+    Proyecto final · Deep Learning y Sistemas Inteligentes · Universidad del Valle, 2026
+  </footer>
+
+  <template id="plantilla-fila">
+    <tr>
+      <td class="indice"></td>
+      <td><input data-campo="marca_tiempo" inputmode="decimal" aria-label="Marca de tiempo en días"></td>
+      <td><input data-campo="monto" inputmode="decimal" aria-label="Monto en quetzales"></td>
+      <td><input data-campo="rubro" list="lista-rubros" aria-label="Rubro"></td>
+      <td><input data-campo="canal" list="lista-canales" aria-label="Canal"></td>
+      <td><input data-campo="ciudad" list="lista-ciudades" aria-label="Ciudad"></td>
+      <td><button type="button" class="quitar" aria-label="Quitar transacción">×</button></td>
+    </tr>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,810 @@
+{
+  "nota": "Generado por src/generar_demo.py; no editar a mano.",
+  "version_preprocesamiento": "causal_v2",
+  "umbral_referencia": 0.7336683417085427,
+  "costos": {
+    "fn": 4200.0,
+    "fp": 180.0
+  },
+  "vocabularios": {
+    "rubros": [
+      "supermercado",
+      "restaurante",
+      "combustible",
+      "farmacia",
+      "ropa",
+      "electronica",
+      "viajes",
+      "entretenimiento",
+      "servicios",
+      "ferreteria"
+    ],
+    "canales": [
+      "chip",
+      "contactless",
+      "ecommerce",
+      "atm"
+    ],
+    "ciudades": [
+      "guatemala",
+      "quetzaltenango",
+      "escuintla",
+      "coban",
+      "huehuetenango",
+      "peten",
+      "miami",
+      "madrid",
+      "ciudad_de_mexico",
+      "bogota"
+    ]
+  },
+  "ejemplos": [
+    {
+      "id": "caso_76",
+      "nombre": "Legítima habitual",
+      "tipo": "legitimo",
+      "descripcion": "Compras cotidianas en la ciudad habitual de la tarjeta.",
+      "mecanismo": "legitimo",
+      "puntaje_esperado": 1.7698317478220815e-08,
+      "transacciones": [
+        {
+          "marca_tiempo": 102.54309373520408,
+          "monto": 141.8,
+          "rubro": "ropa",
+          "canal": "ecommerce",
+          "ciudad": "quetzaltenango"
+        },
+        {
+          "marca_tiempo": 103.4082570551654,
+          "monto": 148.98,
+          "rubro": "viajes",
+          "canal": "ecommerce",
+          "ciudad": "quetzaltenango"
+        },
+        {
+          "marca_tiempo": 103.55350072478474,
+          "monto": 13.12,
+          "rubro": "supermercado",
+          "canal": "contactless",
+          "ciudad": "quetzaltenango"
+        },
+        {
+          "marca_tiempo": 106.42523105802837,
+          "monto": 27.97,
+          "rubro": "restaurante",
+          "canal": "ecommerce",
+          "ciudad": "quetzaltenango"
+        },
+        {
+          "marca_tiempo": 106.49020931072407,
+          "monto": 122.47,
+          "rubro": "viajes",
+          "canal": "contactless",
+          "ciudad": "quetzaltenango"
+        },
+        {
+          "marca_tiempo": 108.44985849087499,
+          "monto": 39.69,
+          "rubro": "restaurante",
+          "canal": "contactless",
+          "ciudad": "quetzaltenango"
+        },
+        {
+          "marca_tiempo": 108.60698999480924,
+          "monto": 53.17,
+          "rubro": "viajes",
+          "canal": "contactless",
+          "ciudad": "quetzaltenango"
+        },
+        {
+          "marca_tiempo": 109.17111569865843,
+          "monto": 39.69,
+          "rubro": "restaurante",
+          "canal": "chip",
+          "ciudad": "quetzaltenango"
+        },
+        {
+          "marca_tiempo": 110.47388822703935,
+          "monto": 16.88,
+          "rubro": "restaurante",
+          "canal": "chip",
+          "ciudad": "quetzaltenango"
+        },
+        {
+          "marca_tiempo": 111.37533464977741,
+          "monto": 64.14,
+          "rubro": "viajes",
+          "canal": "contactless",
+          "ciudad": "quetzaltenango"
+        },
+        {
+          "marca_tiempo": 111.69277879254804,
+          "monto": 70.94,
+          "rubro": "farmacia",
+          "canal": "atm",
+          "ciudad": "quetzaltenango"
+        },
+        {
+          "marca_tiempo": 112.21073811563237,
+          "monto": 113.92,
+          "rubro": "farmacia",
+          "canal": "contactless",
+          "ciudad": "quetzaltenango"
+        },
+        {
+          "marca_tiempo": 113.54186439726102,
+          "monto": 71.21,
+          "rubro": "ferreteria",
+          "canal": "chip",
+          "ciudad": "quetzaltenango"
+        },
+        {
+          "marca_tiempo": 114.44141811704115,
+          "monto": 76.47,
+          "rubro": "supermercado",
+          "canal": "ecommerce",
+          "ciudad": "quetzaltenango"
+        },
+        {
+          "marca_tiempo": 115.39455373709357,
+          "monto": 117.88,
+          "rubro": "farmacia",
+          "canal": "chip",
+          "ciudad": "quetzaltenango"
+        },
+        {
+          "marca_tiempo": 115.45320830209877,
+          "monto": 35.02,
+          "rubro": "restaurante",
+          "canal": "chip",
+          "ciudad": "quetzaltenango"
+        },
+        {
+          "marca_tiempo": 118.33589311231354,
+          "monto": 41.75,
+          "rubro": "viajes",
+          "canal": "ecommerce",
+          "ciudad": "quetzaltenango"
+        },
+        {
+          "marca_tiempo": 121.26774992018288,
+          "monto": 87.17,
+          "rubro": "viajes",
+          "canal": "chip",
+          "ciudad": "quetzaltenango"
+        },
+        {
+          "marca_tiempo": 121.46844130186479,
+          "monto": 77.39,
+          "rubro": "viajes",
+          "canal": "chip",
+          "ciudad": "quetzaltenango"
+        },
+        {
+          "marca_tiempo": 123.53271366379508,
+          "monto": 272.34,
+          "rubro": "viajes",
+          "canal": "chip",
+          "ciudad": "quetzaltenango"
+        }
+      ]
+    },
+    {
+      "id": "caso_52423",
+      "nombre": "Señuelo legítimo",
+      "tipo": "legitimo",
+      "descripcion": "Microcompras desordenadas y un cobro grande, pero legítimas: parecido superficial con F1.",
+      "mecanismo": "senuelo_f1",
+      "puntaje_esperado": 0.4271082580089569,
+      "transacciones": [
+        {
+          "marca_tiempo": 121.4620849881156,
+          "monto": 49.23,
+          "rubro": "combustible",
+          "canal": "contactless",
+          "ciudad": "escuintla"
+        },
+        {
+          "marca_tiempo": 122.34578858965469,
+          "monto": 59.57,
+          "rubro": "farmacia",
+          "canal": "chip",
+          "ciudad": "escuintla"
+        },
+        {
+          "marca_tiempo": 122.3817407505896,
+          "monto": 103.12,
+          "rubro": "farmacia",
+          "canal": "ecommerce",
+          "ciudad": "escuintla"
+        },
+        {
+          "marca_tiempo": 124.8201560688938,
+          "monto": 46.34,
+          "rubro": "combustible",
+          "canal": "chip",
+          "ciudad": "escuintla"
+        },
+        {
+          "marca_tiempo": 125.49245209270572,
+          "monto": 40.98,
+          "rubro": "farmacia",
+          "canal": "ecommerce",
+          "ciudad": "escuintla"
+        },
+        {
+          "marca_tiempo": 125.63216780840928,
+          "monto": 144.8,
+          "rubro": "farmacia",
+          "canal": "contactless",
+          "ciudad": "escuintla"
+        },
+        {
+          "marca_tiempo": 126.65935451009511,
+          "monto": 63.08,
+          "rubro": "farmacia",
+          "canal": "contactless",
+          "ciudad": "escuintla"
+        },
+        {
+          "marca_tiempo": 127.53297185240285,
+          "monto": 68.49,
+          "rubro": "farmacia",
+          "canal": "ecommerce",
+          "ciudad": "escuintla"
+        },
+        {
+          "marca_tiempo": 131.59491992391094,
+          "monto": 69.48,
+          "rubro": "farmacia",
+          "canal": "ecommerce",
+          "ciudad": "escuintla"
+        },
+        {
+          "marca_tiempo": 132.4671435679125,
+          "monto": 33.7,
+          "rubro": "farmacia",
+          "canal": "ecommerce",
+          "ciudad": "escuintla"
+        },
+        {
+          "marca_tiempo": 133.35499535158502,
+          "monto": 96.63,
+          "rubro": "farmacia",
+          "canal": "chip",
+          "ciudad": "escuintla"
+        },
+        {
+          "marca_tiempo": 136.40424177196738,
+          "monto": 95.18,
+          "rubro": "servicios",
+          "canal": "contactless",
+          "ciudad": "escuintla"
+        },
+        {
+          "marca_tiempo": 136.58277988473301,
+          "monto": 75.35,
+          "rubro": "farmacia",
+          "canal": "atm",
+          "ciudad": "escuintla"
+        },
+        {
+          "marca_tiempo": 139.55186894475688,
+          "monto": 83.23,
+          "rubro": "combustible",
+          "canal": "ecommerce",
+          "ciudad": "escuintla"
+        },
+        {
+          "marca_tiempo": 140.4835468710226,
+          "monto": 60.14,
+          "rubro": "combustible",
+          "canal": "chip",
+          "ciudad": "escuintla"
+        },
+        {
+          "marca_tiempo": 140.5068209704318,
+          "monto": 93.3,
+          "rubro": "combustible",
+          "canal": "contactless",
+          "ciudad": "escuintla"
+        },
+        {
+          "marca_tiempo": 140.71465269665802,
+          "monto": 95.48,
+          "rubro": "farmacia",
+          "canal": "contactless",
+          "ciudad": "miami"
+        },
+        {
+          "marca_tiempo": 142.60621095257397,
+          "monto": 49.34,
+          "rubro": "farmacia",
+          "canal": "chip",
+          "ciudad": "escuintla"
+        },
+        {
+          "marca_tiempo": 143.26731225344682,
+          "monto": 32.64,
+          "rubro": "farmacia",
+          "canal": "chip",
+          "ciudad": "escuintla"
+        },
+        {
+          "marca_tiempo": 143.3172578988624,
+          "monto": 19.42,
+          "rubro": "ferreteria",
+          "canal": "ecommerce",
+          "ciudad": "escuintla"
+        }
+      ]
+    },
+    {
+      "id": "caso_6416",
+      "nombre": "Fraude F1 (rampa)",
+      "tipo": "fraude",
+      "descripcion": "Compras pequeñas en rampa y un cobro grande. Es el patrón más difícil: en este caso el puntaje queda bajo el umbral (falso negativo).",
+      "mecanismo": "F1",
+      "puntaje_esperado": 0.041290659457445145,
+      "transacciones": [
+        {
+          "marca_tiempo": 90.48412766167473,
+          "monto": 41.98,
+          "rubro": "entretenimiento",
+          "canal": "chip",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 91.57922017245336,
+          "monto": 38.84,
+          "rubro": "farmacia",
+          "canal": "chip",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 94.60055626949753,
+          "monto": 47.26,
+          "rubro": "electronica",
+          "canal": "chip",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 97.4687023715588,
+          "monto": 27.26,
+          "rubro": "entretenimiento",
+          "canal": "chip",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 98.31886898104428,
+          "monto": 62.92,
+          "rubro": "viajes",
+          "canal": "contactless",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 107.63727644824806,
+          "monto": 76.86,
+          "rubro": "farmacia",
+          "canal": "chip",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 109.26758545543669,
+          "monto": 161.76,
+          "rubro": "supermercado",
+          "canal": "chip",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 110.41819207729176,
+          "monto": 93.63,
+          "rubro": "combustible",
+          "canal": "chip",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 111.34961338204879,
+          "monto": 403.71,
+          "rubro": "entretenimiento",
+          "canal": "chip",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 118.26869643173072,
+          "monto": 43.32,
+          "rubro": "electronica",
+          "canal": "chip",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 120.3342954078289,
+          "monto": 78.19,
+          "rubro": "servicios",
+          "canal": "chip",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 121.31051885745315,
+          "monto": 152.39,
+          "rubro": "entretenimiento",
+          "canal": "chip",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 122.5764449863312,
+          "monto": 59.2,
+          "rubro": "viajes",
+          "canal": "ecommerce",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 125.52073519191292,
+          "monto": 16.65,
+          "rubro": "farmacia",
+          "canal": "contactless",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 130.53649864681736,
+          "monto": 49.9,
+          "rubro": "farmacia",
+          "canal": "contactless",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 130.5637505923227,
+          "monto": 39.07,
+          "rubro": "viajes",
+          "canal": "contactless",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 132.63131454078402,
+          "monto": 89.36,
+          "rubro": "electronica",
+          "canal": "ecommerce",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 136.3538551006398,
+          "monto": 65.25,
+          "rubro": "ropa",
+          "canal": "ecommerce",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 136.4497295404003,
+          "monto": 174.51,
+          "rubro": "entretenimiento",
+          "canal": "chip",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 140.583732150038,
+          "monto": 21.4,
+          "rubro": "supermercado",
+          "canal": "ecommerce",
+          "ciudad": "guatemala"
+        }
+      ]
+    },
+    {
+      "id": "caso_1405",
+      "nombre": "Fraude F2 (ciudades lejanas)",
+      "tipo": "fraude",
+      "descripcion": "Transacciones en ciudades lejanas con poca separación temporal.",
+      "mecanismo": "F2",
+      "puntaje_esperado": 0.9748657941818237,
+      "transacciones": [
+        {
+          "marca_tiempo": 128.5337678829325,
+          "monto": 88.75,
+          "rubro": "servicios",
+          "canal": "chip",
+          "ciudad": "huehuetenango"
+        },
+        {
+          "marca_tiempo": 131.89049860239234,
+          "monto": 121.84,
+          "rubro": "ropa",
+          "canal": "chip",
+          "ciudad": "huehuetenango"
+        },
+        {
+          "marca_tiempo": 132.79501408022233,
+          "monto": 103.59,
+          "rubro": "entretenimiento",
+          "canal": "ecommerce",
+          "ciudad": "huehuetenango"
+        },
+        {
+          "marca_tiempo": 133.8659124224597,
+          "monto": 106.83,
+          "rubro": "servicios",
+          "canal": "ecommerce",
+          "ciudad": "huehuetenango"
+        },
+        {
+          "marca_tiempo": 134.7490525928336,
+          "monto": 124.96,
+          "rubro": "ropa",
+          "canal": "chip",
+          "ciudad": "huehuetenango"
+        },
+        {
+          "marca_tiempo": 134.79965723754412,
+          "monto": 108.71,
+          "rubro": "servicios",
+          "canal": "ecommerce",
+          "ciudad": "huehuetenango"
+        },
+        {
+          "marca_tiempo": 136.98473642482804,
+          "monto": 93.66,
+          "rubro": "supermercado",
+          "canal": "ecommerce",
+          "ciudad": "huehuetenango"
+        },
+        {
+          "marca_tiempo": 137.45997799705555,
+          "monto": 217.2,
+          "rubro": "servicios",
+          "canal": "ecommerce",
+          "ciudad": "huehuetenango"
+        },
+        {
+          "marca_tiempo": 137.93754857186076,
+          "monto": 86.98,
+          "rubro": "servicios",
+          "canal": "ecommerce",
+          "ciudad": "huehuetenango"
+        },
+        {
+          "marca_tiempo": 137.9423555646141,
+          "monto": 111.66,
+          "rubro": "servicios",
+          "canal": "contactless",
+          "ciudad": "huehuetenango"
+        },
+        {
+          "marca_tiempo": 138.80897761026446,
+          "monto": 239.76,
+          "rubro": "restaurante",
+          "canal": "chip",
+          "ciudad": "huehuetenango"
+        },
+        {
+          "marca_tiempo": 138.8360973481512,
+          "monto": 139.08,
+          "rubro": "entretenimiento",
+          "canal": "chip",
+          "ciudad": "huehuetenango"
+        },
+        {
+          "marca_tiempo": 138.95370252048048,
+          "monto": 221.51,
+          "rubro": "farmacia",
+          "canal": "ecommerce",
+          "ciudad": "huehuetenango"
+        },
+        {
+          "marca_tiempo": 139.74976229829534,
+          "monto": 92.18,
+          "rubro": "servicios",
+          "canal": "ecommerce",
+          "ciudad": "huehuetenango"
+        },
+        {
+          "marca_tiempo": 139.77967563691485,
+          "monto": 80.31,
+          "rubro": "servicios",
+          "canal": "chip",
+          "ciudad": "huehuetenango"
+        },
+        {
+          "marca_tiempo": 140.01543173596872,
+          "monto": 80.21,
+          "rubro": "farmacia",
+          "canal": "contactless",
+          "ciudad": "huehuetenango"
+        },
+        {
+          "marca_tiempo": 141.71381253884223,
+          "monto": 120.2,
+          "rubro": "entretenimiento",
+          "canal": "contactless",
+          "ciudad": "huehuetenango"
+        },
+        {
+          "marca_tiempo": 141.86635615365398,
+          "monto": 269.82,
+          "rubro": "ropa",
+          "canal": "ecommerce",
+          "ciudad": "huehuetenango"
+        },
+        {
+          "marca_tiempo": 142.644695670967,
+          "monto": 89.64,
+          "rubro": "servicios",
+          "canal": "chip",
+          "ciudad": "huehuetenango"
+        },
+        {
+          "marca_tiempo": 142.6545921565499,
+          "monto": 61.28,
+          "rubro": "entretenimiento",
+          "canal": "atm",
+          "ciudad": "quetzaltenango"
+        }
+      ]
+    },
+    {
+      "id": "caso_20511",
+      "nombre": "Fraude F3 (ráfaga ecommerce)",
+      "tipo": "fraude",
+      "descripcion": "Ráfaga de ecommerce caro de madrugada.",
+      "mecanismo": "F3",
+      "puntaje_esperado": 0.9998296499252319,
+      "transacciones": [
+        {
+          "marca_tiempo": 76.9177492090837,
+          "monto": 98.12,
+          "rubro": "ropa",
+          "canal": "ecommerce",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 81.72136562902023,
+          "monto": 125.92,
+          "rubro": "farmacia",
+          "canal": "chip",
+          "ciudad": "ciudad_de_mexico"
+        },
+        {
+          "marca_tiempo": 81.84238375100952,
+          "monto": 188.64,
+          "rubro": "ropa",
+          "canal": "chip",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 82.77009314711202,
+          "monto": 93.86,
+          "rubro": "servicios",
+          "canal": "chip",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 86.60217374338944,
+          "monto": 169.97,
+          "rubro": "entretenimiento",
+          "canal": "ecommerce",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 91.7289612973636,
+          "monto": 63.01,
+          "rubro": "ropa",
+          "canal": "ecommerce",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 94.71361161166672,
+          "monto": 91.87,
+          "rubro": "farmacia",
+          "canal": "atm",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 94.86118293215986,
+          "monto": 76.07,
+          "rubro": "ropa",
+          "canal": "atm",
+          "ciudad": "coban"
+        },
+        {
+          "marca_tiempo": 105.60256183808636,
+          "monto": 215.55,
+          "rubro": "restaurante",
+          "canal": "ecommerce",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 108.95548551261258,
+          "monto": 102.66,
+          "rubro": "ropa",
+          "canal": "contactless",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 112.96871097103987,
+          "monto": 88.3,
+          "rubro": "restaurante",
+          "canal": "chip",
+          "ciudad": "coban"
+        },
+        {
+          "marca_tiempo": 114.75123662294573,
+          "monto": 134.03,
+          "rubro": "ropa",
+          "canal": "chip",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 116.84050834278723,
+          "monto": 63.34,
+          "rubro": "ropa",
+          "canal": "contactless",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 118.7449012647958,
+          "monto": 90.77,
+          "rubro": "farmacia",
+          "canal": "chip",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 119.70755300157646,
+          "monto": 41.67,
+          "rubro": "farmacia",
+          "canal": "chip",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 122.89609037747219,
+          "monto": 64.48,
+          "rubro": "ropa",
+          "canal": "ecommerce",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 125.59035202346475,
+          "monto": 52.12,
+          "rubro": "servicios",
+          "canal": "chip",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 129.7185826457185,
+          "monto": 60.9,
+          "rubro": "combustible",
+          "canal": "contactless",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 129.77975838042371,
+          "monto": 71.35,
+          "rubro": "combustible",
+          "canal": "ecommerce",
+          "ciudad": "guatemala"
+        },
+        {
+          "marca_tiempo": 132.14665461310227,
+          "monto": 4619.49,
+          "rubro": "supermercado",
+          "canal": "ecommerce",
+          "ciudad": "miami"
+        }
+      ]
+    },
+    {
+      "id": "caso_0",
+      "nombre": "Secuencia corta (1 evento)",
+      "tipo": "legitimo",
+      "descripcion": "Tarjeta sin historia: el modelo rellena la ventana. Sirve para probar secuencias cortas.",
+      "mecanismo": "legitimo",
+      "puntaje_esperado": 3.7645240809069946e-05,
+      "transacciones": [
+        {
+          "marca_tiempo": 3.3403871746916547,
+          "monto": 143.56,
+          "rubro": "viajes",
+          "canal": "contactless",
+          "ciudad": "quetzaltenango"
+        }
+      ]
+    }
+  ]
+}
