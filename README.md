@@ -361,7 +361,7 @@ Guías: [API](Proyecto1/docs/API.md), [despliegue y operación](Proyecto1/docs/D
 | **Enlace público** | **Pendiente:** URL de Render tras unir el PR a `main` |
 | Verificación del servicio público | Pendiente: `evidencias/verificacion_render.json` con el verificador |
 | Capturas y registros desde otro equipo | Pendiente: capturas y extracto de logs de Render en [evidencias/](evidencias/README.md) |
-| Presentación final en PDF | Pendiente (Angel); revisión y ensayo de ambos. El PDF de Proyecto 1 es antecedente |
+| Presentación final en PDF | [presentacion_final.pdf](presentacion/presentacion_final.pdf), con su [PowerPoint editable](presentacion/presentacion_final.pptx) y el [generador](presentacion/generar_presentacion.js); 13 diapositivas con notas de quién expone |
 
 La prueba HTTP local y la imagen Docker demuestran la integración del modelo con
 el servicio y la interfaz. Falta publicar en Render y demostrar el uso por una
